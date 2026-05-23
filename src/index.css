@@ -1,0 +1,88 @@
+@import '@fontsource-variable/inter';
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ── Base ────────────────────────────────────────────── */
+
+@layer base {
+  * { box-sizing: border-box; }
+
+  html, body, #root {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+  }
+
+  html {
+    font-family: 'Inter Variable', InterVar, system-ui, sans-serif;
+  }
+
+  body {
+    background-color: var(--surface-white);
+    color: var(--ink-gray-9);
+    font-size: 14px;
+    line-height: 1.15;
+    letter-spacing: 0.02em;
+  }
+
+  ::-webkit-scrollbar { width: 6px; height: 6px; }
+  ::-webkit-scrollbar-track { background: var(--surface-gray-1); }
+  ::-webkit-scrollbar-thumb { background: var(--outline-gray-3); border-radius: 3px; }
+  ::-webkit-scrollbar-thumb:hover { background: var(--outline-gray-4); }
+}
+
+/* ── Components ──────────────────────────────────────── */
+
+@layer components {
+  .glass-card {
+    background-color: var(--surface-cards);
+    border: 1px solid var(--outline-gray-2);
+    border-radius: 12px;
+  }
+
+  .stat-positive { color: var(--ink-green-2); }
+  .stat-negative { color: var(--ink-red-3); }
+
+  .pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    border-radius: 9999px;
+    font-size: 12px;
+    line-height: 1.15;
+    padding: 2px 8px;
+    white-space: nowrap;
+  }
+
+  .pill-blue {
+    background-color: var(--surface-blue-1);
+    color: var(--ink-blue-2);
+    border: 1px solid var(--outline-blue-1);
+  }
+
+  .pill-green {
+    background-color: var(--surface-green-1);
+    color: var(--ink-green-2);
+    border: 1px solid var(--outline-green-1);
+  }
+
+  .pill-red {
+    background-color: var(--surface-red-1);
+    color: var(--ink-red-3);
+    border: 1px solid var(--outline-red-1);
+  }
+
+  .pill-amber {
+    background-color: var(--surface-amber-1);
+    color: var(--ink-amber-2);
+    border: 1px solid var(--outline-amber-1);
+  }
+
+  .pill-purple {
+    background-color: var(--surface-violet-1);
+    color: var(--ink-violet-1);
+    border: 1px solid var(--outline-gray-2);
+  }
+}

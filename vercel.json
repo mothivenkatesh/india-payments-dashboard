@@ -1,0 +1,12 @@
+{
+  "rewrites": [
+    {
+      "source": "/api/ckan/:path*",
+      "destination": "https://ckan.indiadataportal.com/api/3/action/:path*"
+    },
+    {
+      "source": "/api/npci/:path*",
+      "destination": "https://www.npci.org.in/:path*"
+    }
+  ]
+}
