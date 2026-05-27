@@ -1,6 +1,7 @@
 /** @jsxImportSource preact */
 import { useState } from 'preact/hooks'
 import Icon from '../../components/Icon'
+import AppLogo from '../../components/AppLogo'
 import LineChart from '../../components/charts/LineChart'
 import BarChart from '../../components/charts/BarChart'
 import { useUPIAppData } from '../../hooks/useUpiData'
@@ -87,9 +88,10 @@ export default function Players() {
           <div class="flex flex-wrap gap-2">
             {app.latestRanked.map(r => (
               <button key={r.app} onClick={() => setSelectedApp(r.app)}
-                class={clsx('flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-medium transition-all border',
+                class={clsx('flex items-center gap-1.5 pl-1 pr-3 py-1 rounded-full text-xs font-medium transition-all border',
                   selectedApp === r.app ? 'text-ink-gray-9' : 'text-ink-gray-7 border-outline-gray-2 hover:border-outline-gray-3')}
                 style={selectedApp === r.app ? { background:`${r.color}22`, borderColor:`${r.color}66`, color:r.color } : {}}>
+                <AppLogo name={r.app} size={20} rounded="full" color={r.color} />
                 #{r.rank} {r.app}
               </button>
             ))}
@@ -98,10 +100,7 @@ export default function Players() {
           {/* App profile */}
           <div class="glass-card p-5">
             <div class="flex items-center gap-4 mb-5">
-              <div class="w-12 h-12 rounded-xl flex items-center justify-center shrink-0 text-2xl font-bold"
-                style={{ background:`${color}22`, border:`1px solid ${color}44`, color }}>
-                {selectedApp[0]}
-              </div>
+              <AppLogo name={selectedApp} size={48} rounded="xl" color={color} />
               <div class="flex-1 min-w-0">
                 <h2 class="text-lg font-semibold text-ink-gray-9">{selectedApp}</h2>
                 <p class="text-xs text-ink-gray-7">Latest: {latest?.label}</p>
@@ -279,7 +278,12 @@ export default function Players() {
                           {b ? (
                             <>
                               <td class="px-4 py-2.5 text-ink-gray-6 tabular-nums">#{i+1}</td>
-                              <td class="px-4 py-2.5 text-ink-gray-9 font-medium max-w-[160px] truncate">{b.bankName}</td>
+                              <td class="px-4 py-2.5 text-ink-gray-9 font-medium max-w-[220px]">
+                                <div class="flex items-center gap-2 min-w-0">
+                                  <AppLogo name={b.bankName} size={20} rounded="md" />
+                                  <span class="truncate">{b.bankName}</span>
+                                </div>
+                              </td>
                               <td class="px-4 py-2.5"><span class="pill bg-surface-gray-2 text-ink-gray-6 border border-outline-gray-2 whitespace-nowrap">{b.bankCategory}</span></td>
                               <td class="px-4 py-2.5 text-ink-gray-9 tabular-nums">{fmtBank(b.totalCCSpendVal)}</td>
                               <td class="px-4 py-2.5 text-ink-gray-9 tabular-nums">{fmtBank(b.totalDCSpendVal)}</td>
@@ -317,8 +321,13 @@ function BankDetail({ bankName, bankData }: { bankName: string; bankData: Return
   return (
     <div class="space-y-6">
       <div class="glass-card p-5">
-        <h2 class="text-lg font-semibold text-ink-gray-9">{bankName}</h2>
-        <p class="text-xs text-ink-gray-7 mt-0.5">Latest: {latest?.label} · {bankData.length} months</p>
+        <div class="flex items-center gap-3">
+          <AppLogo name={bankName} size={40} rounded="lg" />
+          <div class="min-w-0">
+            <h2 class="text-lg font-semibold text-ink-gray-9 truncate">{bankName}</h2>
+            <p class="text-xs text-ink-gray-7 mt-0.5">Latest: {latest?.label} · {bankData.length} months</p>
+          </div>
+        </div>
         {latest && (
           <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mt-4">
             {[

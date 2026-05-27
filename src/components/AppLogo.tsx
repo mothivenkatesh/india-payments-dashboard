@@ -1,0 +1,183 @@
+/** @jsxImportSource preact */
+import { useState } from 'preact/hooks'
+import clsx from 'clsx'
+
+/**
+ * AppLogo — fetches an official company logo via Clearbit's free logo API,
+ * with a graceful fallback to a colored initial-letter tile if the logo
+ * doesn't load (unknown domain, network error, or 404).
+ *
+ * Pass either a known `name` (UPI app, bank, data source) or an explicit
+ * `domain` override.
+ */
+
+// UPI apps + data sources + known fintechs
+const KNOWN_DOMAINS: Record<string, string> = {
+  // UPI apps
+  'PhonePe':       'phonepe.com',
+  'Google Pay':    'pay.google.com',
+  'Paytm':         'paytm.com',
+  'BHIM':          'npci.org.in',
+  'Amazon Pay':    'amazonpay.in',
+  'WhatsApp Pay':  'whatsapp.com',
+  'CRED':          'cred.club',
+  'Navi':          'navi.com',
+  'super.money':   'super.money',
+
+  // Data sources
+  'NPCI':          'npci.org.in',
+  'RBI':           'rbi.org.in',
+  'CKAN':          'ckan.org',
+
+  // Fintech / PG players (for future use)
+  'Cashfree':      'cashfree.com',
+  'Razorpay':      'razorpay.com',
+  'Juspay':        'juspay.in',
+  'PayU':          'payu.in',
+  'CCAvenue':      'ccavenue.com',
+  'BillDesk':      'billdesk.com',
+}
+
+// Indian bank canonical names → primary domain
+const BANK_DOMAINS: Record<string, string> = {
+  'HDFC BANK LTD':                       'hdfcbank.com',
+  'HDFC BANK':                           'hdfcbank.com',
+  'ICICI BANK LTD':                      'icicibank.com',
+  'ICICI BANK':                          'icicibank.com',
+  'STATE BANK OF INDIA':                 'sbi.co.in',
+  'SBI':                                 'sbi.co.in',
+  'AXIS BANK LTD':                       'axisbank.com',
+  'AXIS BANK':                           'axisbank.com',
+  'KOTAK MAHINDRA BANK LTD':             'kotak.com',
+  'KOTAK MAHINDRA BANK':                 'kotak.com',
+  'INDUSIND BANK LTD':                   'indusind.com',
+  'INDUSIND BANK':                       'indusind.com',
+  'YES BANK LTD':                        'yesbank.in',
+  'YES BANK':                            'yesbank.in',
+  'IDFC FIRST BANK LIMITED':             'idfcfirstbank.com',
+  'IDFC FIRST BANK':                     'idfcfirstbank.com',
+  'IDFC BANK LTD':                       'idfcfirstbank.com',
+  'FEDERAL BANK LTD':                    'federalbank.co.in',
+  'FEDERAL BANK':                        'federalbank.co.in',
+  'RBL BANK':                            'rblbank.com',
+  'RBL BANK LTD':                        'rblbank.com',
+  'BANK OF BARODA':                      'bankofbaroda.in',
+  'PUNJAB NATIONAL BANK':                'pnbindia.in',
+  'CANARA BANK':                         'canarabank.com',
+  'UNION BANK OF INDIA':                 'unionbankofindia.co.in',
+  'BANK OF INDIA':                       'bankofindia.co.in',
+  'INDIAN BANK':                         'indianbank.in',
+  'CENTRAL BANK OF INDIA':               'centralbankofindia.co.in',
+  'INDIAN OVERSEAS BANK':                'iob.in',
+  'UCO BANK':                            'ucobank.com',
+  'BANK OF MAHARASHTRA':                 'bankofmaharashtra.in',
+  'PUNJAB AND SIND BANK':                'punjabandsindbank.co.in',
+  'IDBI BANK LIMITED':                   'idbibank.in',
+  'IDBI BANK LTD':                       'idbibank.in',
+  'STANDARD CHARTERED BANK':             'sc.com',
+  'CITIBANK':                            'citibank.com',
+  'CITIBANK N.A.':                       'citibank.com',
+  'HSBC LTD':                            'hsbc.co.in',
+  'THE HONGKONG AND SHANGHAI BANKING CORPORATION LIMITED': 'hsbc.co.in',
+  'DEUTSCHE BANK AG':                    'deutschebank.co.in',
+  'DBS BANK INDIA LTD':                  'dbs.com',
+  'DBS BANK LTD':                        'dbs.com',
+  'BARCLAYS BANK PLC':                   'barclays.in',
+  'BNP PARIBAS':                         'bnpparibas.co.in',
+  'AU SMALL FINANCE BANK':               'aubank.in',
+  'AU SMALL FINANCE BANK LIMITED':       'aubank.in',
+  'JANA SMALL FINANCE BANK':             'janabank.com',
+  'EQUITAS SMALL FINANCE BANK':          'equitasbank.com',
+  'EQUITAS SMALL FINANCE BANK LIMITED':  'equitasbank.com',
+  'UJJIVAN SMALL FINANCE BANK':          'ujjivansfb.in',
+  'ESAF SMALL FINANCE BANK':             'esafbank.com',
+  'SURYODAY SMALL FINANCE BANK':         'suryodaybank.com',
+  'CAPITAL SMALL FINANCE BANK':          'capitalbank.co.in',
+  'FINCARE SMALL FINANCE BANK':          'fincarebank.com',
+  'AIRTEL PAYMENTS BANK':                'airtel.in',
+  'AIRTEL PAYMENTS BANK LTD':            'airtel.in',
+  'PAYTM PAYMENTS BANK':                 'paytmbank.com',
+  'PAYTM PAYMENTS BANK LTD':             'paytmbank.com',
+  'FINO PAYMENTS BANK':                  'finobank.com',
+  'FINO PAYMENTS BANK LTD':              'finobank.com',
+  'INDIA POST PAYMENTS BANK':            'ippbonline.com',
+  'INDIA POST PAYMENTS BANK LTD':        'ippbonline.com',
+  'KARNATAKA BANK LTD':                  'karnatakabank.com',
+  'KARNATAKA BANK':                      'karnatakabank.com',
+  'KARUR VYSYA BANK':                    'kvb.co.in',
+  'CITY UNION BANK LTD':                 'cityunionbank.com',
+  'CITY UNION BANK':                     'cityunionbank.com',
+  'SOUTH INDIAN BANK':                   'southindianbank.com',
+  'TAMILNAD MERCANTILE BANK':            'tmb.in',
+  'DHANLAXMI BANK':                      'dhanbank.com',
+  'CSB BANK':                            'csb.co.in',
+  'JAMMU AND KASHMIR BANK':              'jkbank.com',
+  'BANDHAN BANK LTD':                    'bandhanbank.com',
+  'BANDHAN BANK':                        'bandhanbank.com',
+  'NAINITAL BANK':                       'nainitalbank.co.in',
+}
+
+function resolveDomain(name: string, override?: string): string {
+  if (override) return override
+  if (KNOWN_DOMAINS[name]) return KNOWN_DOMAINS[name]
+  const upper = name.toUpperCase().trim()
+  if (BANK_DOMAINS[upper]) return BANK_DOMAINS[upper]
+  return ''
+}
+
+interface Props {
+  name: string
+  size?: number
+  domain?: string
+  color?: string
+  className?: string
+  rounded?: 'sm' | 'md' | 'lg' | 'xl' | 'full'
+}
+
+export default function AppLogo({
+  name,
+  size = 32,
+  domain,
+  color,
+  className,
+  rounded = 'lg',
+}: Props) {
+  const [failed, setFailed] = useState(false)
+  const resolved = resolveDomain(name, domain)
+  const logoUrl = resolved ? `https://logo.clearbit.com/${resolved}?size=128` : ''
+  const radiusClass = `rounded-${rounded}`
+
+  if (failed || !logoUrl) {
+    const bg = color ?? '#6B7280'
+    return (
+      <div
+        class={clsx('flex items-center justify-center shrink-0 font-bold', radiusClass, className)}
+        style={{
+          width: size,
+          height: size,
+          background: `${bg}22`,
+          border: `1px solid ${bg}44`,
+          color: bg,
+          fontSize: Math.max(10, size * 0.45),
+        }}
+        title={name}
+      >
+        {name[0]?.toUpperCase() ?? '?'}
+      </div>
+    )
+  }
+
+  return (
+    <img
+      src={logoUrl}
+      alt={name}
+      title={name}
+      width={size}
+      height={size}
+      class={clsx('shrink-0 bg-white object-contain border border-outline-gray-1', radiusClass, className)}
+      style={{ width: size, height: size, padding: Math.max(1, size * 0.06) }}
+      onError={() => setFailed(true)}
+      loading="lazy"
+    />
+  )
+}

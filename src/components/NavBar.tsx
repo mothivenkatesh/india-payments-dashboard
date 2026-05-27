@@ -1,6 +1,7 @@
 /** @jsxImportSource preact */
 import { Link, useLocation } from 'wouter-preact'
 import Icon from './Icon'
+import AppLogo from './AppLogo'
 import clsx from 'clsx'
 
 const NAV = [
@@ -84,9 +85,15 @@ export default function NavBar() {
 
       {/* Footer */}
       <div class="px-4 py-3 border-t border-outline-gray-1 space-y-2">
-        <div class="space-y-0.5">
-          <p class="text-2xs text-ink-gray-5">CKAN · RBI historical (all rails)</p>
-          <p class="text-2xs text-ink-gray-5">NPCI · live UPI, NACH, BBPS (~15d)</p>
+        <div class="space-y-1.5">
+          <div class="flex items-center gap-1.5">
+            <AppLogo name="RBI" size={14} rounded="sm" />
+            <p class="text-2xs text-ink-gray-5">CKAN · RBI historical (all rails)</p>
+          </div>
+          <div class="flex items-center gap-1.5">
+            <AppLogo name="NPCI" size={14} rounded="sm" />
+            <p class="text-2xs text-ink-gray-5">NPCI · live UPI, NACH, BBPS (~15d)</p>
+          </div>
         </div>
         <p class="text-2xs text-ink-gray-4">Designed by <a href="https://www.linkedin.com/in/mothivenkatesh/" target="_blank" rel="noopener noreferrer" class="hover:text-ink-gray-6 underline underline-offset-2 transition-colors">Mothi</a></p>
       </div>

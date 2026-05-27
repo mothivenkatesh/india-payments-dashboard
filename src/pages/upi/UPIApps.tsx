@@ -1,6 +1,7 @@
 /** @jsxImportSource preact */
 import { useState } from 'preact/hooks'
 import Icon from '../../components/Icon'
+import AppLogo from '../../components/AppLogo'
 import LineChart from '../../components/charts/LineChart'
 import { useUPIAppData } from '../../hooks/useUpiData'
 import { APP_COLORS, toMonthLabel } from '../../data/upiAppData'
@@ -51,9 +52,10 @@ export default function UPIApps() {
       <div class="flex flex-wrap gap-2">
         {app.latestRanked.map(r => (
           <button key={r.app} onClick={() => setSelected(r.app)}
-            class={clsx('flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-medium transition-all border',
+            class={clsx('flex items-center gap-1.5 pl-1 pr-3 py-1 rounded-full text-xs font-medium transition-all border',
               selected === r.app ? 'text-ink-gray-9' : 'text-ink-gray-7 border-outline-gray-2 hover:border-outline-gray-3')}
             style={selected === r.app ? { background: `${r.color}22`, borderColor: `${r.color}66`, color: r.color } : {}}>
+            <AppLogo name={r.app} size={20} rounded="full" color={r.color} />
             #{r.rank} {r.app}
           </button>
         ))}
@@ -62,10 +64,7 @@ export default function UPIApps() {
       {/* Profile header */}
       <div class="glass-card p-5">
         <div class="flex items-center gap-4">
-          <div class="w-12 h-12 rounded-xl flex items-center justify-center shrink-0 text-2xl font-bold"
-            style={{ background: `${color}22`, border: `1px solid ${color}44`, color }}>
-            {selected[0]}
-          </div>
+          <AppLogo name={selected} size={48} rounded="xl" color={color} />
           <div class="flex-1 min-w-0">
             <h2 class="text-lg font-semibold text-ink-gray-9">{selected}</h2>
             <p class="text-xs text-ink-gray-7">Latest: {latest?.label}</p>
