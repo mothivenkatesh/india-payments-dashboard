@@ -1,4 +1,4 @@
-@import '@fontsource-variable/inter';
+@import '@fontsource-variable/bricolage-grotesque';
 
 @tailwind base;
 @tailwind components;
@@ -16,7 +16,7 @@
   }
 
   html {
-    font-family: 'Inter Variable', InterVar, system-ui, sans-serif;
+    font-family: 'Bricolage Grotesque Variable', 'Bricolage Grotesque', system-ui, sans-serif;
   }
 
   body {

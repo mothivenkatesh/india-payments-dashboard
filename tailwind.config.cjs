@@ -136,11 +136,11 @@ const frappePlugin = plugin(
   function ({ addBase, theme }) {
     addBase({
       html: {
-        'font-family': `'Inter Variable', InterVar, ${theme('fontFamily.sans')}`,
+        'font-family': `'Bricolage Grotesque Variable', 'Bricolage Grotesque', ${theme('fontFamily.sans')}`,
         'font-optical-sizing': 'auto',
       },
       'html, body, button, p, span, div': {
-        'font-variation-settings': "'opsz' 24, 'cv11' 1",
+        'font-variation-settings': "'opsz' 14, 'wdth' 100",
         '-webkit-font-smoothing': 'antialiased',
         '-moz-osx-font-smoothing': 'grayscale',
       },
