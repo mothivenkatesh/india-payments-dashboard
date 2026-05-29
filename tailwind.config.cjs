@@ -56,15 +56,13 @@ const lucidePlugin = plugin(({ matchComponents }) => {
   )
 })
 
-// ── Font-family base (project-specific — Bricolage Grotesque headline) ────
+// ── Font-family base (project-specific — Work Sans) ───────────────────────
 const fontFamilyPlugin = plugin(({ addBase, theme }) => {
   addBase({
     html: {
-      'font-family': `'Bricolage Grotesque Variable', 'Bricolage Grotesque', ${theme('fontFamily.sans')}`,
-      'font-optical-sizing': 'auto',
+      'font-family': `'Work Sans Variable', 'Work Sans', ${theme('fontFamily.sans')}`,
     },
     'html, body, button, p, span, div': {
-      'font-variation-settings': "'opsz' 14, 'wdth' 100",
       '-webkit-font-smoothing': 'antialiased',
       '-moz-osx-font-smoothing': 'grayscale',
     },

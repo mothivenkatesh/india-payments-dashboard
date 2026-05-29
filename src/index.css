@@ -1,4 +1,4 @@
-@import '@fontsource-variable/bricolage-grotesque';
+@import '@fontsource-variable/work-sans';
 
 @tailwind base;
 @tailwind components;
@@ -16,7 +16,7 @@
   }
 
   html {
-    font-family: 'Bricolage Grotesque Variable', 'Bricolage Grotesque', system-ui, sans-serif;
+    font-family: 'Work Sans Variable', 'Work Sans', system-ui, sans-serif;
   }
 
   body {
