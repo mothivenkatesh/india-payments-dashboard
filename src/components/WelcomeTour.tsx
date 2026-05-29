@@ -244,7 +244,7 @@ export default function WelcomeTour({ open, onClose }: WelcomeTourProps) {
                 {STEPS.map((_, i) => (
                   <span
                     key={i}
-                    class={`w-1.5 h-1.5 rounded-full transition-colors ${i === idx ? 'bg-ink-blue-2' : i < idx ? 'bg-ink-gray-7' : 'bg-surface-gray-2'}`}
+                    class={`w-1.5 h-1.5 rounded-full transition-colors ${i === idx ? 'bg-blue-600' : i < idx ? 'bg-gray-600' : 'bg-surface-gray-2'}`}
                   />
                 ))}
               </div>
@@ -268,7 +268,7 @@ export default function WelcomeTour({ open, onClose }: WelcomeTourProps) {
               <ul class="mt-3 space-y-1.5">
                 {step.bullets.map((b, i) => (
                   <li key={i} class="flex gap-2 text-xs text-ink-gray-7 leading-relaxed">
-                    <span class="mt-1.5 w-1 h-1 rounded-full bg-ink-blue-2 shrink-0" />
+                    <span class="mt-1.5 w-1 h-1 rounded-full bg-blue-600 shrink-0" />
                     <span>{b}</span>
                   </li>
                 ))}
@@ -281,7 +281,7 @@ export default function WelcomeTour({ open, onClose }: WelcomeTourProps) {
             <button
               type="button"
               onClick={onClose}
-              class="text-2xs text-ink-gray-6 hover:text-ink-gray-9 transition-colors cursor-pointer"
+              class="text-2xs text-ink-gray-6 hover:text-ink-gray-9 transition-colors cursor-pointer px-2 py-1.5"
             >
               Skip
             </button>
@@ -300,7 +300,7 @@ export default function WelcomeTour({ open, onClose }: WelcomeTourProps) {
                 <button
                   type="button"
                   onClick={() => setIdx(i => Math.min(STEPS.length - 1, i + 1))}
-                  class="text-xs font-medium px-3 py-1.5 rounded bg-ink-blue-2 text-white hover:opacity-90 transition-opacity cursor-pointer"
+                  class="text-xs font-medium px-3 py-1.5 rounded bg-blue-700 text-white hover:opacity-90 transition-opacity cursor-pointer"
                 >
                   Next
                 </button>
@@ -309,7 +309,7 @@ export default function WelcomeTour({ open, onClose }: WelcomeTourProps) {
                 <button
                   type="button"
                   onClick={onClose}
-                  class="text-xs font-medium px-3 py-1.5 rounded bg-ink-blue-2 text-white hover:opacity-90 transition-opacity cursor-pointer"
+                  class="text-xs font-medium px-3 py-1.5 rounded bg-blue-700 text-white hover:opacity-90 transition-opacity cursor-pointer"
                 >
                   Got it
                 </button>

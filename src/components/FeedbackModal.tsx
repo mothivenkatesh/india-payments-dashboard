@@ -215,7 +215,7 @@ export default function FeedbackModal({ open, onClose }: FeedbackModalProps) {
               <button
                 type="submit"
                 disabled={status === 'sending' || !body.trim()}
-                class="text-xs font-medium px-3 py-1.5 rounded bg-ink-blue-2 text-white hover:opacity-90 disabled:opacity-40 disabled:cursor-not-allowed transition-opacity cursor-pointer"
+                class="text-xs font-medium px-3 py-1.5 rounded bg-blue-700 text-white hover:opacity-90 disabled:opacity-40 disabled:cursor-not-allowed transition-opacity cursor-pointer"
               >
                 {status === 'sending' ? 'Sending…' : 'Send feedback'}
               </button>

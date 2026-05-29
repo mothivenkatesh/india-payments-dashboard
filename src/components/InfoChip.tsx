@@ -80,7 +80,7 @@ export default function InfoChip({ term, text, label }: InfoChipProps) {
         onFocus={() => setHover(true)}
         onBlur={() => setHover(false)}
         aria-label={`What is ${headline}?`}
-        class="inline-flex items-center justify-center w-3.5 h-3.5 rounded-full bg-surface-gray-2 border border-outline-gray-2 text-ink-gray-6 hover:text-ink-gray-9 hover:bg-surface-gray-3 transition-colors cursor-help align-middle"
+        class="relative inline-flex items-center justify-center w-3.5 h-3.5 rounded-full bg-surface-gray-2 border border-outline-gray-2 text-ink-gray-6 hover:text-ink-gray-9 hover:bg-surface-gray-3 transition-colors cursor-help align-middle before:absolute before:content-[''] before:-inset-[5px]"
         style={{ fontSize: '9px', lineHeight: '1', fontWeight: 700 }}
       >
         ?

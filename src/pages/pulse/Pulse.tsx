@@ -250,7 +250,7 @@ export default function Pulse() {
                 key={m}
                 type="button"
                 onClick={() => setViewMode(m)}
-                class={`px-3 py-1 text-xs font-medium rounded transition-colors cursor-pointer ${
+                class={`px-3 py-1.5 text-xs font-medium rounded transition-colors cursor-pointer ${
                   viewMode === m
                     ? 'bg-surface-white text-ink-gray-9 shadow-sm border border-outline-gray-2'
                     : 'text-ink-gray-6 hover:text-ink-gray-8'
@@ -332,7 +332,7 @@ export default function Pulse() {
               const rest = dot > -1 ? s.slice(dot + 2) : ''
               return (
                 <li key={i} class="flex gap-2 text-sm text-ink-gray-8">
-                  <span class="mt-1.5 w-1.5 h-1.5 rounded-full bg-ink-amber-2 shrink-0" />
+                  <span class="mt-1.5 w-1.5 h-1.5 rounded-full bg-amber-600 shrink-0" />
                   <span>
                     <span class="font-medium">{head}</span>
                     {rest && <span class="text-ink-gray-6"> {rest}</span>}

@@ -19,9 +19,9 @@ export default function FreshnessPill({ dataDate, lagDays, className = '' }: Fre
         type="button"
         onMouseEnter={() => setShow(true)}
         onMouseLeave={() => setShow(false)}
-        class={`inline-flex items-center gap-1 text-2xs text-ink-gray-6 bg-surface-gray-1 border border-outline-gray-2 rounded-full px-2.5 py-1 cursor-pointer ${className}`}
+        class={`inline-flex items-center gap-1 text-2xs text-ink-gray-6 bg-surface-gray-1 border border-outline-gray-2 rounded-full px-2.5 py-1.5 cursor-pointer ${className}`}
       >
-        <span class={`w-1.5 h-1.5 rounded-full ${fresh ? 'bg-ink-green-2' : 'bg-ink-amber-2'}`} />
+        <span class={`w-1.5 h-1.5 rounded-full ${fresh ? 'bg-green-600' : 'bg-amber-600'}`} />
         <span>Data: {dataDate}</span>
         {lagDays !== undefined && <span class="text-ink-gray-5">· {lagDays}d lag</span>}
       </button>

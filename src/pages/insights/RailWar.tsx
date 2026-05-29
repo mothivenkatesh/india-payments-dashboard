@@ -360,7 +360,7 @@ export default function RailWar() {
               if (lines.length === 0) lines.push('Watch which MDR-bearing rail ranks highest. That is where Cashfree should double down.')
               return lines.map((l, i) => (
                 <div key={i} class="flex gap-2 text-sm text-ink-gray-8">
-                  <span class="mt-1.5 w-1.5 h-1.5 rounded-full bg-ink-amber-2 shrink-0" />
+                  <span class="mt-1.5 w-1.5 h-1.5 rounded-full bg-amber-600 shrink-0" />
                   <span>{l}</span>
                 </div>
               ))

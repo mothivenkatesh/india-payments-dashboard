@@ -128,7 +128,7 @@ export default function NavBar({ onFeedbackClick, onTourClick, mobileOpen = fals
           <button
             type="button"
             onClick={onTourClick}
-            class="flex items-center gap-1.5 text-2xs text-ink-gray-6 hover:text-ink-gray-9 transition-colors cursor-pointer"
+            class="flex items-center gap-1.5 py-1.5 text-2xs text-ink-gray-6 hover:text-ink-gray-9 transition-colors cursor-pointer"
           >
             <Icon name="zap" size={11} />
             <span class="underline underline-offset-2">Take the tour</span>
@@ -138,7 +138,7 @@ export default function NavBar({ onFeedbackClick, onTourClick, mobileOpen = fals
           <button
             type="button"
             onClick={onFeedbackClick}
-            class="flex items-center gap-1.5 text-2xs text-ink-gray-6 hover:text-ink-gray-9 transition-colors cursor-pointer"
+            class="flex items-center gap-1.5 py-1.5 text-2xs text-ink-gray-6 hover:text-ink-gray-9 transition-colors cursor-pointer"
           >
             <Icon name="edit-2" size={11} />
             <span class="underline underline-offset-2">Share feedback</span>

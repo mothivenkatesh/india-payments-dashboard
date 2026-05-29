@@ -13,6 +13,20 @@
 :root {
   --ink-gray-4: #757575; /* 4.6:1 on white (was #999999, 2.85:1) */
   --ink-gray-5: #6B6B6B; /* 5.3:1 on white (was #7C7C7C, 4.18:1) */
+  /* Accent TEXT tokens failed AA on white at small sizes. Bumped to the
+     darker same-hue shade. Surface/fill tokens are untouched, so tinted
+     pills keep their background and just get readable text. */
+  --ink-blue-2:  #0070CC; /* blue/700  — 5.0:1 (was #0289F7, 3.5:1) */
+  --ink-blue-3:  #0070CC; /* blue/700  — 4.7:1 on blue-1 tint (was #007BE0, 4.0:1) */
+  --ink-amber-2: #B35309; /* amber/700 — 5.1:1 (was #E79913, 2.3:1) */
+  --ink-green-2: #137949; /* green/700 — 5.4:1 (was #46B37E, 2.6:1) */
+  --ink-red-3:   #CC2929; /* red/600   — 5.4:1 (was #E03636, 4.4:1) */
+}
+
+/* Dark sidebar: ink-gray-4 (#717171) was 3.92:1 on the near-black rail.
+   Lift it so the "Designed by Mothi" footer clears AA. */
+[data-theme="dark"] {
+  --ink-gray-4: #9A9A9A; /* ~6.8:1 on #0F0F0F (was #717171, 3.9:1) */
 }
 
 /* ── Accessibility: respect reduced-motion ─────────────────────────────
