@@ -177,7 +177,7 @@ export default function RailWar() {
                 key={rail.id}
                 class={`flex items-center gap-1.5 px-2.5 py-1 rounded-full border ${
                   isStory ? 'border-outline-gray-2 bg-surface-white' : 'border-outline-gray-1 bg-surface-gray-1'
-                } ${noData ? 'opacity-50' : ''}`}
+                }`}
                 title={noData ? 'No data in this period' : undefined}
               >
                 <span class="w-2 h-2 rounded-full shrink-0" style={{ background: isStory ? rail.color : DIM_COLOR }} />

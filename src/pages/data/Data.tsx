@@ -130,7 +130,7 @@ export default function Data() {
             ))}
           </div>
         ) : (
-          <div class="overflow-x-auto">
+          <div class="overflow-x-auto" tabIndex={0}>
             <table class="w-full text-xs">
               <thead>
                 <tr class="border-b border-outline-gray-1 bg-surface-gray-1">

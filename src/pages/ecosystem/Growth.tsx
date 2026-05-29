@@ -97,7 +97,7 @@ export default function Growth() {
                   <button key={a} onClick={() => toggle(a)}
                     class={clsx('flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-medium transition-all border',
                       isOn ? 'text-ink-gray-9' : 'text-ink-gray-7 border-outline-gray-2 hover:border-outline-gray-3')}
-                    style={isOn ? { background:`${color}22`, borderColor:`${color}66`, color } : {}}>
+                    style={isOn ? { background:`${color}22`, borderColor:`${color}66` } : {}}>
                     {isOn && <Icon name="check" size={11} />}
                     {a}
                   </button>

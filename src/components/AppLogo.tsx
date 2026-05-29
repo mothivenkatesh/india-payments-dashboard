@@ -181,7 +181,8 @@ export default function AppLogo({
   return (
     <img
       src={logoUrl}
-      alt={name}
+      alt=""
+      aria-hidden="true"
       title={name}
       width={size}
       height={size}

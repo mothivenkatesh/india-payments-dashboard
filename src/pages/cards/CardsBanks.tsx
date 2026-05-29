@@ -91,7 +91,7 @@ export default function CardsBanks() {
               <h2 class="text-sm font-medium text-ink-gray-9">Bank Leaderboard</h2>
               <span class="text-xs text-ink-gray-6">{filtered.length} banks</span>
             </div>
-            <div class="overflow-x-auto">
+            <div class="overflow-x-auto" tabIndex={0}>
               <table class="w-full text-xs">
                 <thead>
                   <tr class="border-b border-outline-gray-1">

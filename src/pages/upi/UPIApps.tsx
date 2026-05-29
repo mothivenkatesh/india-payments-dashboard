@@ -156,7 +156,7 @@ export default function UPIApps() {
         <div class="p-4 border-b border-outline-gray-2">
           <h2 class="text-sm font-medium text-ink-gray-9">Monthly Data — {selected}</h2>
         </div>
-        <div class="overflow-x-auto">
+        <div class="overflow-x-auto" tabIndex={0}>
           <table class="w-full text-xs">
             <thead>
               <tr class="border-b border-outline-gray-1">

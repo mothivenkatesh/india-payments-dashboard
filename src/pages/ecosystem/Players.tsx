@@ -90,7 +90,7 @@ export default function Players() {
               <button key={r.app} onClick={() => setSelectedApp(r.app)}
                 class={clsx('flex items-center gap-1.5 pl-1 pr-3 py-1 rounded-full text-xs font-medium transition-all border',
                   selectedApp === r.app ? 'text-ink-gray-9' : 'text-ink-gray-7 border-outline-gray-2 hover:border-outline-gray-3')}
-                style={selectedApp === r.app ? { background:`${r.color}22`, borderColor:`${r.color}66`, color:r.color } : {}}>
+                style={selectedApp === r.app ? { background:`${r.color}22`, borderColor:`${r.color}66` } : {}}>
                 <AppLogo name={r.app} size={20} rounded="full" color={r.color} />
                 #{r.rank} {r.app}
               </button>
@@ -106,12 +106,12 @@ export default function Players() {
               </div>
               <span class="text-2xs text-ink-gray-5">{app.latestRanked.length} apps</span>
             </div>
-            <div class="overflow-x-auto">
+            <div class="overflow-x-auto" tabIndex={0}>
               <table class="w-full text-xs">
                 <thead>
                   <tr class="border-b border-outline-gray-1">
                     {['Rank','App','MoM','Volume','Value','Vol Share','Val Share',''].map(h => (
-                      <th key={h} class="text-left px-4 py-2.5 text-ink-gray-6 font-medium whitespace-nowrap">{h}</th>
+                      <th key={h} class="text-left px-4 py-2.5 text-ink-gray-6 font-medium whitespace-nowrap">{h || <span class="sr-only">Actions</span>}</th>
                     ))}
                   </tr>
                 </thead>
@@ -160,7 +160,7 @@ export default function Players() {
                         <td class="px-4 py-3 text-ink-gray-9 tabular-nums">{fmt(r.volume, 'vol')}</td>
                         <td class="px-4 py-3 text-ink-gray-9 tabular-nums">{fmt(r.value, 'val')}</td>
                         <td class="px-4 py-3 tabular-nums">
-                          <span class="text-sm font-semibold" style={{ color: r.color }}>{r.volShare.toFixed(1)}%</span>
+                          <span class="text-sm font-semibold text-ink-gray-9">{r.volShare.toFixed(1)}%</span>
                         </td>
                         <td class="px-4 py-3 text-ink-gray-7 tabular-nums">{r.valShare.toFixed(1)}%</td>
                         <td class="px-4 py-3 w-12">
@@ -248,7 +248,7 @@ export default function Players() {
             <div class="p-4 border-b border-outline-gray-2">
               <h2 class="text-sm font-medium text-ink-gray-9">Monthly Data — {selectedApp}</h2>
             </div>
-            <div class="overflow-x-auto">
+            <div class="overflow-x-auto" tabIndex={0}>
               <table class="w-full text-xs">
                 <thead>
                   <tr class="border-b border-outline-gray-1">
@@ -340,12 +340,12 @@ export default function Players() {
                   <h2 class="text-sm font-medium text-ink-gray-9">Bank Leaderboard</h2>
                   <span class="text-xs text-ink-gray-6">{filtered.length} banks · {latestDate}</span>
                 </div>
-                <div class="overflow-x-auto">
+                <div class="overflow-x-auto" tabIndex={0}>
                   <table class="w-full text-xs">
                     <thead>
                       <tr class="border-b border-outline-gray-1">
                         {['Rank','Bank','Category','CC Spend','DC Spend','CC Cards','DC Cards',''].map(h => (
-                          <th key={h} class="text-left px-4 py-2.5 text-ink-gray-6 font-medium whitespace-nowrap">{h}</th>
+                          <th key={h} class="text-left px-4 py-2.5 text-ink-gray-6 font-medium whitespace-nowrap">{h || <span class="sr-only">Actions</span>}</th>
                         ))}
                       </tr>
                     </thead>

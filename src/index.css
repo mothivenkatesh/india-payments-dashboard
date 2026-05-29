@@ -11,7 +11,7 @@
    wins over the plugin's base-layer vars. Dark sidebar (data-theme=dark)
    is unaffected — it has its own ink scale. */
 :root {
-  --ink-gray-4: #757575; /* 4.6:1 on white (was #999999, 2.85:1) */
+  --ink-gray-4: #707070; /* 4.8:1 white / 4.66:1 on gray-1 (was #999999, 2.85:1) */
   --ink-gray-5: #6B6B6B; /* 5.3:1 on white (was #7C7C7C, 4.18:1) */
   /* Accent TEXT tokens failed AA on white at small sizes. Bumped to the
      darker same-hue shade. Surface/fill tokens are untouched, so tinted

@@ -140,7 +140,7 @@ export default function MarketHealth() {
                 <p class="text-2xs text-ink-gray-7">{fmtVol(leader.volume)} txns · {fmtVal(leader.value)}</p>
               </div>
               <div class="text-right shrink-0">
-                <p class="text-lg font-bold" style={{ color:leader.color }}>{leader.volShare.toFixed(1)}%</p>
+                <p class="text-lg font-bold text-ink-gray-9">{leader.volShare.toFixed(1)}%</p>
                 <p class="text-2xs text-ink-gray-6">vol share</p>
               </div>
             </div>
