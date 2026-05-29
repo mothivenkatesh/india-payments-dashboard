@@ -56,11 +56,11 @@ const lucidePlugin = plugin(({ matchComponents }) => {
   )
 })
 
-// ── Font-family base (project-specific — Funnel Sans) ─────────────────────
+// ── Font-family base (project-specific — Geist) ───────────────────────────
 const fontFamilyPlugin = plugin(({ addBase, theme }) => {
   addBase({
     html: {
-      'font-family': `'Funnel Sans Variable', 'Funnel Sans', ${theme('fontFamily.sans')}`,
+      'font-family': `'Geist Variable', 'Geist', ${theme('fontFamily.sans')}`,
     },
     'html, body, button, p, span, div': {
       '-webkit-font-smoothing': 'antialiased',
@@ -68,21 +68,6 @@ const fontFamilyPlugin = plugin(({ addBase, theme }) => {
     },
   })
 })
-
-// ── Type scale override (project-specific — 12 / 14 / 16 / 20 / 24 only) ───
-// The preset ships an 8-step scale; this restricts the dashboard to five
-// sizes. The eight Tailwind names snap onto those five so existing markup
-// keeps working: 2xs+xs = 12, sm+base = 14, lg = 16, xl+2xl = 20, 3xl = 24.
-const fontSize = {
-  '2xs': ['12px', { lineHeight: '1.25', letterSpacing: '0' }],
-  xs:    ['12px', { lineHeight: '1.25', letterSpacing: '0' }],
-  sm:    ['14px', { lineHeight: '1.35', letterSpacing: '0' }],
-  base:  ['14px', { lineHeight: '1.4',  letterSpacing: '0' }],
-  lg:    ['16px', { lineHeight: '1.4',  letterSpacing: '0' }],
-  xl:    ['20px', { lineHeight: '1.25', letterSpacing: '0' }],
-  '2xl': ['20px', { lineHeight: '1.25', letterSpacing: '0' }],
-  '3xl': ['24px', { lineHeight: '1.2',  letterSpacing: '0' }],
-}
 
 // ── Icon safelist (dynamic lucide-${name} usage in Icon.tsx) ─────────────
 const USED_ICONS = [
@@ -108,7 +93,5 @@ module.exports = {
     path.join(__dirname, 'src/**/*.{js,ts,jsx,tsx}'),
   ],
   safelist: USED_ICONS.map(name => `lucide-${name}`),
-  // Override the preset's 8-step scale with the five-size scale.
-  theme: { fontSize },
   plugins: [fontFamilyPlugin, lucidePlugin],
 }

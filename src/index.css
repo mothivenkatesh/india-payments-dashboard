@@ -1,4 +1,4 @@
-@import '@fontsource-variable/funnel-sans';
+@import '@fontsource-variable/geist';
 
 @tailwind base;
 @tailwind components;
@@ -16,7 +16,7 @@
   }
 
   html {
-    font-family: 'Funnel Sans Variable', 'Funnel Sans', system-ui, sans-serif;
+    font-family: 'Geist Variable', 'Geist', system-ui, sans-serif;
   }
 
   body {
