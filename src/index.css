@@ -1,4 +1,4 @@
-@import '@fontsource-variable/work-sans';
+@import '@fontsource-variable/funnel-sans';
 
 @tailwind base;
 @tailwind components;
@@ -16,7 +16,7 @@
   }
 
   html {
-    font-family: 'Work Sans Variable', 'Work Sans', system-ui, sans-serif;
+    font-family: 'Funnel Sans Variable', 'Funnel Sans', system-ui, sans-serif;
   }
 
   body {
