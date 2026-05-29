@@ -43,7 +43,7 @@ export default function MonthPicker({ options, value, onChange }: MonthPickerPro
       <button
         type="button"
         onClick={() => setOpen(o => !o)}
-        class="flex items-center gap-1.5 h-7 px-2.5 rounded border border-outline-gray-2 bg-surface-white hover:bg-surface-gray-1 text-ink-gray-8 text-xs font-medium transition-colors cursor-pointer focus:outline-none focus:border-outline-blue-1"
+        class="flex items-center gap-1.5 h-7 px-2.5 rounded border border-outline-gray-2 bg-surface-white hover:bg-surface-gray-1 text-ink-gray-8 text-xs font-medium transition-colors cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-outline-blue-1 focus:border-outline-blue-1"
       >
         <span>{selected?.label ?? value}</span>
         <svg

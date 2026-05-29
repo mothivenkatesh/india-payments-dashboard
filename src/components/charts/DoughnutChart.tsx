@@ -8,9 +8,10 @@ interface DoughnutChartProps {
   colors: string[]
   height?: number
   tooltipFormat?: (v: number) => string
+  ariaLabel?: string
 }
 
-export default function DoughnutChart({ labels, data, colors, height = 180, tooltipFormat }: DoughnutChartProps) {
+export default function DoughnutChart({ labels, data, colors, height = 180, tooltipFormat, ariaLabel }: DoughnutChartProps) {
   const ref = useRef<HTMLCanvasElement>(null)
   const chartRef = useRef<Chart | null>(null)
 
@@ -54,7 +55,11 @@ export default function DoughnutChart({ labels, data, colors, height = 180, tool
 
   return (
     <div style={{ position: 'relative', height: `${height}px`, width: '100%' }}>
-      <canvas ref={ref} />
+      <canvas
+        ref={ref}
+        role="img"
+        aria-label={ariaLabel ?? `Share breakdown: ${labels.join(', ')}`}
+      />
     </div>
   )
 }

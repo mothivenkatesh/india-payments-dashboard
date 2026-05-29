@@ -26,7 +26,7 @@ function Field({
         value={value}
         onInput={(e) => onChange((e.target as HTMLInputElement).value)}
         placeholder={placeholder ?? '0'}
-        class="w-full bg-surface-gray-1 border border-outline-gray-2 rounded-lg px-3 py-2 text-sm text-ink-gray-9 placeholder:text-ink-gray-5 focus:outline-none focus:border-outline-blue-1 transition-colors"
+        class="w-full bg-surface-gray-1 border border-outline-gray-2 rounded-lg px-3 py-2 text-sm text-ink-gray-9 placeholder:text-ink-gray-5 focus:outline-none focus-visible:ring-2 focus-visible:ring-outline-blue-1 focus:border-outline-blue-1 transition-colors"
       />
     </div>
   )
@@ -171,7 +171,7 @@ export default function MyRail() {
               value={form.company}
               onInput={(e) => setForm(prev => ({ ...prev, company: (e.target as HTMLInputElement).value }))}
               placeholder="e.g. Razorpay, Pine Labs, Cashfree"
-              class="w-full bg-surface-gray-1 border border-outline-gray-2 rounded-lg px-3 py-2 text-sm text-ink-gray-9 placeholder:text-ink-gray-5 focus:outline-none focus:border-outline-blue-1 transition-colors"
+              class="w-full bg-surface-gray-1 border border-outline-gray-2 rounded-lg px-3 py-2 text-sm text-ink-gray-9 placeholder:text-ink-gray-5 focus:outline-none focus-visible:ring-2 focus-visible:ring-outline-blue-1 focus:border-outline-blue-1 transition-colors"
             />
           </div>
 

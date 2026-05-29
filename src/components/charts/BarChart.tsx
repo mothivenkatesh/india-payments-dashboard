@@ -10,9 +10,10 @@ interface BarChartProps {
   horizontal?: boolean
   tickFormat?: (v: number) => string
   stacked?: boolean
+  ariaLabel?: string
 }
 
-export default function BarChart({ labels, datasets, height = 220, horizontal = false, tickFormat, stacked = false }: BarChartProps) {
+export default function BarChart({ labels, datasets, height = 220, horizontal = false, tickFormat, stacked = false, ariaLabel }: BarChartProps) {
   const ref = useRef<HTMLCanvasElement>(null)
   const chartRef = useRef<Chart | null>(null)
 
@@ -57,7 +58,11 @@ export default function BarChart({ labels, datasets, height = 220, horizontal = 
 
   return (
     <div style={{ position: 'relative', height: `${height}px`, width: '100%' }}>
-      <canvas ref={ref} />
+      <canvas
+        ref={ref}
+        role="img"
+        aria-label={ariaLabel ?? `Bar chart: ${datasets.map(d => d.label).filter(Boolean).join(', ') || labels.slice(0, 8).join(', ')}`}
+      />
     </div>
   )
 }

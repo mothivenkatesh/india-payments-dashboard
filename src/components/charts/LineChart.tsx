@@ -17,9 +17,11 @@ interface LineChartProps {
   verticalAnnotation?: { atIndex: number; label: string }
   /** Dataset indexes whose end-of-line should be labelled with the dataset.label. */
   endLabels?: number[]
+  /** Accessible description of the chart for screen readers. */
+  ariaLabel?: string
 }
 
-export default function LineChart({ labels, datasets, height = 200, tickFormat, y2TickFormat, baselineAt, baselineLabel, verticalAnnotation, endLabels }: LineChartProps) {
+export default function LineChart({ labels, datasets, height = 200, tickFormat, y2TickFormat, baselineAt, baselineLabel, verticalAnnotation, endLabels, ariaLabel }: LineChartProps) {
   const ref = useRef<HTMLCanvasElement>(null)
   const chartRef = useRef<Chart | null>(null)
 
@@ -169,7 +171,11 @@ export default function LineChart({ labels, datasets, height = 200, tickFormat, 
 
   return (
     <div style={{ position: 'relative', height: `${height}px`, width: '100%' }}>
-      <canvas ref={ref} />
+      <canvas
+        ref={ref}
+        role="img"
+        aria-label={ariaLabel ?? `Line chart: ${datasets.map(d => d.label).filter(Boolean).join(', ')}`}
+      />
     </div>
   )
 }

@@ -172,7 +172,7 @@ export default function FeedbackModal({ open, onClose }: FeedbackModalProps) {
                 rows={6}
                 maxLength={MAX_LEN + 50}
                 placeholder="Be specific. Page name, what you tried, what you expected, what happened."
-                class="w-full px-3 py-2 text-sm text-ink-gray-9 placeholder-ink-gray-4 bg-surface-gray-1 border border-outline-gray-2 rounded-md focus:outline-none focus:border-outline-blue-1 focus:bg-surface-white transition-colors resize-none"
+                class="w-full px-3 py-2 text-sm text-ink-gray-9 placeholder-ink-gray-4 bg-surface-gray-1 border border-outline-gray-2 rounded-md focus:outline-none focus-visible:ring-2 focus-visible:ring-outline-blue-1 focus:border-outline-blue-1 focus:bg-surface-white transition-colors resize-none"
               />
               <div class="flex items-center justify-between mt-1">
                 <span class={`text-2xs ${remaining < 0 ? 'text-ink-red-3' : 'text-ink-gray-5'}`}>
@@ -190,7 +190,7 @@ export default function FeedbackModal({ open, onClose }: FeedbackModalProps) {
                 value={email}
                 onInput={e => setEmail((e.target as HTMLInputElement).value)}
                 placeholder="you@company.com"
-                class="w-full px-3 py-2 text-sm text-ink-gray-9 placeholder-ink-gray-4 bg-surface-gray-1 border border-outline-gray-2 rounded-md focus:outline-none focus:border-outline-blue-1 focus:bg-surface-white transition-colors"
+                class="w-full px-3 py-2 text-sm text-ink-gray-9 placeholder-ink-gray-4 bg-surface-gray-1 border border-outline-gray-2 rounded-md focus:outline-none focus-visible:ring-2 focus-visible:ring-outline-blue-1 focus:border-outline-blue-1 focus:bg-surface-white transition-colors"
               />
             </div>
 

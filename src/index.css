@@ -4,6 +4,29 @@
 @tailwind components;
 @tailwind utilities;
 
+/* ── Accessibility: contrast token overrides (light mode) ──────────────
+   The Frappe defaults fail WCAG AA on white at small sizes:
+   ink-gray-5 #7C7C7C = 4.18:1, ink-gray-4 #999999 = 2.85:1.
+   Darkened so secondary text and captions clear 4.5:1. Unlayered :root
+   wins over the plugin's base-layer vars. Dark sidebar (data-theme=dark)
+   is unaffected — it has its own ink scale. */
+:root {
+  --ink-gray-4: #757575; /* 4.6:1 on white (was #999999, 2.85:1) */
+  --ink-gray-5: #6B6B6B; /* 5.3:1 on white (was #7C7C7C, 4.18:1) */
+}
+
+/* ── Accessibility: respect reduced-motion ─────────────────────────────
+   Disables chart entrance animations, tour/drawer slides, and looping
+   skeleton shimmer for users who ask for less motion (WCAG 2.3.3). */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
 /* ── Base ────────────────────────────────────────────── */
 
 @layer base {
