@@ -9,6 +9,7 @@ interface FetchState<T> {
 
 const cache = new Map<string, { data: unknown; ts: number }>()
 const CACHE_TTL = 5 * 60 * 1000 // 5 min
+const FETCH_TIMEOUT = 15_000   // 15s — beyond this we surface an error instead of an infinite skeleton
 
 export function useFetch<T>(
   key: string,
@@ -17,7 +18,12 @@ export function useFetch<T>(
   const [data, setData] = useState<T | null>(null)
   const [isLoading, setIsLoading] = useState(true)
   const [error, setError] = useState<Error | null>(null)
-  const tick = useRef(0)
+  const mounted = useRef(true)
+
+  useEffect(() => {
+    mounted.current = true
+    return () => { mounted.current = false }
+  }, [])
 
   const load = async () => {
     const cached = cache.get(key)
@@ -28,14 +34,24 @@ export function useFetch<T>(
     }
     setIsLoading(true)
     setError(null)
+    let timer: ReturnType<typeof setTimeout> | undefined
     try {
-      const result = await fetcher()
+      const result = await Promise.race([
+        fetcher(),
+        new Promise<never>((_, reject) => {
+          timer = setTimeout(
+            () => reject(new Error('Request timed out. Check your connection and retry.')),
+            FETCH_TIMEOUT,
+          )
+        }),
+      ])
       cache.set(key, { data: result, ts: Date.now() })
-      setData(result)
+      if (mounted.current) setData(result)
     } catch (e) {
-      setError(e as Error)
+      if (mounted.current) setError(e as Error)
     } finally {
-      setIsLoading(false)
+      if (timer) clearTimeout(timer)
+      if (mounted.current) setIsLoading(false)
     }
   }
 
@@ -43,5 +59,5 @@ export function useFetch<T>(
     load()
   }, [key])
 
-  return { data, isLoading, error, refetch: () => { tick.current++; load() } }
+  return { data, isLoading, error, refetch: () => load() }
 }
