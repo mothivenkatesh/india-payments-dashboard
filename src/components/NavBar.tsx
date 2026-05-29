@@ -90,7 +90,7 @@ export default function NavBar({ onFeedbackClick, onTourClick, mobileOpen = fals
                     href={to}
                     onClick={onMobileNavigate}
                     class={clsx(
-                      'flex items-center gap-2.5 px-2.5 py-1.5 rounded text-sm transition-colors duration-150 cursor-pointer',
+                      'flex items-center gap-2.5 px-2.5 py-1.5 rounded text-lg transition-colors duration-150 cursor-pointer',
                       active
                         ? 'bg-surface-blue-1 text-ink-gray-9'
                         : 'text-ink-gray-6 hover:text-ink-gray-8 hover:bg-surface-gray-2'
@@ -98,11 +98,11 @@ export default function NavBar({ onFeedbackClick, onTourClick, mobileOpen = fals
                   >
                     <Icon
                       name={icon}
-                      size={15}
+                      size={16}
                       className={active ? 'text-ink-blue-2' : ''}
                     />
                     <div class="min-w-0 flex-1">
-                      <div class="leading-tight text-sm">{label}</div>
+                      <div class="leading-tight text-lg">{label}</div>
                     </div>
                   </Link>
                 )
