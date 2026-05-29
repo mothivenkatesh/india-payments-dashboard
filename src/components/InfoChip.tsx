@@ -88,7 +88,7 @@ export default function InfoChip({ term, text, label }: InfoChipProps) {
       {visible && pos && (
         <span
           role="tooltip"
-          class="fixed z-50 p-3 rounded-lg bg-surface-white border border-outline-gray-2 shadow-lg pointer-events-none normal-case tracking-normal"
+          class="fixed z-50 p-3 rounded-lg bg-surface-white border border-outline-gray-2 shadow-lg pointer-events-none normal-case tracking-normal whitespace-normal"
           style={{
             top: pos.below ? `${pos.top}px` : 'auto',
             bottom: pos.below ? 'auto' : `${window.innerHeight - pos.top}px`,
@@ -97,6 +97,7 @@ export default function InfoChip({ term, text, label }: InfoChipProps) {
             maxWidth: 'calc(100vw - 24px)',
             textTransform: 'none',
             letterSpacing: 'normal',
+            whiteSpace: 'normal',
           }}
         >
           <span class="block text-2xs font-semibold text-ink-blue-2 mb-1" style={{ overflowWrap: 'anywhere' }}>{headline}</span>
