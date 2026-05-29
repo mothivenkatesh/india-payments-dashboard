@@ -8,8 +8,9 @@ interface FreshnessPillProps {
 }
 
 export default function FreshnessPill({ dataDate, lagDays, className = '' }: FreshnessPillProps) {
-  if (!dataDate) return null
+  // Hooks must run unconditionally — keep this above any early return.
   const [show, setShow] = useState(false)
+  if (!dataDate) return null
   const fresh = lagDays !== undefined && lagDays <= 45
   const lagMonths = lagDays ? Math.round(lagDays / 30) : 0
   return (
@@ -18,10 +19,10 @@ export default function FreshnessPill({ dataDate, lagDays, className = '' }: Fre
         type="button"
         onMouseEnter={() => setShow(true)}
         onMouseLeave={() => setShow(false)}
-        class={`inline-flex items-center gap-1.5 text-2xs text-ink-gray-6 bg-surface-gray-1 border border-outline-gray-2 rounded-full px-2.5 py-1 cursor-pointer ${className}`}
+        class={`inline-flex items-center gap-1 text-2xs text-ink-gray-6 bg-surface-gray-1 border border-outline-gray-2 rounded-full px-2.5 py-1 cursor-pointer ${className}`}
       >
         <span class={`w-1.5 h-1.5 rounded-full ${fresh ? 'bg-ink-green-2' : 'bg-ink-amber-2'}`} />
-        Data: {dataDate}
+        <span>Data: {dataDate}</span>
         {lagDays !== undefined && <span class="text-ink-gray-5">· {lagDays}d lag</span>}
       </button>
       {show && (
