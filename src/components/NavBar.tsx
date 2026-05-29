@@ -28,7 +28,11 @@ const NAV = [
   },
 ]
 
-export default function NavBar() {
+interface NavBarProps {
+  onFeedbackClick?: () => void
+}
+
+export default function NavBar({ onFeedbackClick }: NavBarProps = {}) {
   const [location] = useLocation()
 
   return (
@@ -95,6 +99,16 @@ export default function NavBar() {
             <p class="text-2xs text-ink-gray-5">NPCI · live UPI, NACH, BBPS (~15d)</p>
           </div>
         </div>
+        {onFeedbackClick && (
+          <button
+            type="button"
+            onClick={onFeedbackClick}
+            class="flex items-center gap-1.5 text-2xs text-ink-gray-6 hover:text-ink-gray-9 transition-colors cursor-pointer"
+          >
+            <Icon name="edit-2" size={11} />
+            <span class="underline underline-offset-2">Share feedback</span>
+          </button>
+        )}
         <p class="text-2xs text-ink-gray-4">Designed by <a href="https://www.linkedin.com/in/mothivenkatesh/" target="_blank" rel="noopener noreferrer" class="hover:text-ink-gray-6 underline underline-offset-2 transition-colors">Mothi</a></p>
       </div>
     </aside>

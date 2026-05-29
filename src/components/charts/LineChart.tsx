@@ -9,9 +9,17 @@ interface LineChartProps {
   height?: number
   tickFormat?: (v: number) => string
   y2TickFormat?: (v: number) => string
+  /** Dashed horizontal reference line at this y-value. */
+  baselineAt?: number
+  /** Label drawn at the right end of the baseline (e.g. "100 = start"). */
+  baselineLabel?: string
+  /** Dashed vertical reference line + label, anchored to a category x-index. */
+  verticalAnnotation?: { atIndex: number; label: string }
+  /** Dataset indexes whose end-of-line should be labelled with the dataset.label. */
+  endLabels?: number[]
 }
 
-export default function LineChart({ labels, datasets, height = 200, tickFormat, y2TickFormat }: LineChartProps) {
+export default function LineChart({ labels, datasets, height = 200, tickFormat, y2TickFormat, baselineAt, baselineLabel, verticalAnnotation, endLabels }: LineChartProps) {
   const ref = useRef<HTMLCanvasElement>(null)
   const chartRef = useRef<Chart | null>(null)
 
@@ -37,16 +45,100 @@ export default function LineChart({ labels, datasets, height = 200, tickFormat, 
       return { ...ds, backgroundColor: grad }
     })
 
+    const annotationPlugin = {
+      id: 'lineAnnotations',
+      afterDatasetsDraw(chart: Chart) {
+        const ctx = chart.ctx
+        const yScale: any = chart.scales.y
+        const xScale: any = chart.scales.x
+        if (!ctx || !yScale || !xScale) return
+
+        if (typeof baselineAt === 'number') {
+          const yPx = yScale.getPixelForValue(baselineAt)
+          ctx.save()
+          ctx.strokeStyle = 'rgba(148,163,184,0.45)'
+          ctx.setLineDash([2, 4])
+          ctx.lineWidth = 1
+          ctx.beginPath()
+          ctx.moveTo(xScale.left, yPx)
+          ctx.lineTo(xScale.right, yPx)
+          ctx.stroke()
+          ctx.setLineDash([])
+          if (baselineLabel) {
+            ctx.fillStyle = 'rgba(100,116,139,0.95)'
+            ctx.font = '10px ui-sans-serif, system-ui, -apple-system, sans-serif'
+            ctx.textAlign = 'right'
+            ctx.textBaseline = 'bottom'
+            ctx.fillText(baselineLabel, xScale.right - 4, yPx - 2)
+          }
+          ctx.restore()
+        }
+
+        if (verticalAnnotation) {
+          const xPx = xScale.getPixelForValue(verticalAnnotation.atIndex)
+          ctx.save()
+          ctx.strokeStyle = 'rgba(148,163,184,0.5)'
+          ctx.setLineDash([2, 4])
+          ctx.lineWidth = 1
+          ctx.beginPath()
+          ctx.moveTo(xPx, yScale.top)
+          ctx.lineTo(xPx, yScale.bottom)
+          ctx.stroke()
+          ctx.setLineDash([])
+          ctx.fillStyle = 'rgba(100,116,139,0.95)'
+          ctx.font = '10px ui-sans-serif, system-ui, -apple-system, sans-serif'
+          ctx.textAlign = 'left'
+          ctx.textBaseline = 'top'
+          ctx.fillText(verticalAnnotation.label, xPx + 4, yScale.top + 2)
+          ctx.restore()
+        }
+
+        if (endLabels && endLabels.length) {
+          ctx.save()
+          ctx.font = '600 10px ui-sans-serif, system-ui, -apple-system, sans-serif'
+          ctx.textAlign = 'left'
+          ctx.textBaseline = 'middle'
+          const placed: { x: number; y: number }[] = []
+          for (const idx of endLabels) {
+            const meta = chart.getDatasetMeta(idx)
+            const ds = chart.data.datasets[idx]
+            if (!meta?.data || !ds) continue
+            const pts: any[] = meta.data as any[]
+            const data: any[] = ds.data as any[]
+            let lastIdx = -1
+            for (let j = pts.length - 1; j >= 0; j--) {
+              if (data[j] !== null && data[j] !== undefined) { lastIdx = j; break }
+            }
+            if (lastIdx < 0) continue
+            const pt = pts[lastIdx]
+            if (!pt) continue
+            let y = pt.y
+            for (const p of placed) {
+              if (Math.abs(p.x - pt.x) < 30 && Math.abs(p.y - y) < 12) y = p.y + 14
+            }
+            placed.push({ x: pt.x, y })
+            ctx.fillStyle = (ds.borderColor as string) || '#475569'
+            ctx.fillText(String(ds.label ?? ''), pt.x + 6, y)
+          }
+          ctx.restore()
+        }
+      },
+    }
+
     chartRef.current = new Chart(ref.current, {
       type: 'line',
       data: { labels, datasets: enhancedDatasets },
+      plugins: [annotationPlugin],
       options: {
         responsive: true,
         maintainAspectRatio: false,
         animation: { duration: 600, easing: 'easeInOutQuart' },
         interaction: { mode: 'index', intersect: false },
+        layout: { padding: { right: endLabels && endLabels.length ? 64 : 0 } },
         plugins: {
-          legend: { labels: { color: '#94A3B8', font: { size: 11 }, boxWidth: 12, padding: 16 } },
+          legend: endLabels && endLabels.length
+            ? { display: false }
+            : { labels: { color: '#94A3B8', font: { size: 11 }, boxWidth: 12, padding: 16 } },
           tooltip: TOOLTIP_DEFAULTS as never,
         },
         scales: {
