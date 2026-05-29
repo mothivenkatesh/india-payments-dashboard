@@ -62,7 +62,7 @@ export default function UPIOverview() {
       {/* Market Leader */}
       {leader && (
         <div class="glass-card p-5">
-          <p class="text-2xs text-ink-gray-6 uppercase tracking-wider mb-3 flex items-center gap-1.5">
+          <p class="text-2xs text-ink-gray-6 tracking-wide mb-3 flex items-center gap-1.5">
             <Icon name="award" size={13} className="text-ink-amber-2" /> Market Leader · {app.latestLabel}
           </p>
           <div class="flex items-center gap-5">

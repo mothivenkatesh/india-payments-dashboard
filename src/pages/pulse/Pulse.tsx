@@ -321,7 +321,7 @@ export default function Pulse() {
         <div class="glass-card p-5">
           <div class="flex items-center gap-2 mb-3">
             <Icon name="activity" size={14} className="text-ink-amber-2" />
-            <span class="text-2xs font-semibold text-ink-amber-2 uppercase tracking-widest">
+            <span class="text-2xs font-semibold text-ink-amber-2 tracking-wide">
               {viewMode === 'cashfree' ? 'What this means for Cashfree' : 'Market signals'}
             </span>
           </div>
@@ -349,7 +349,7 @@ export default function Pulse() {
       <div class="grid grid-cols-1 sm:grid-cols-3 gap-3" data-tour="metric-tiles">
         {isNPCI ? (
           <div class="glass-card p-4 flex flex-col gap-2 justify-center">
-            <span class="text-2xs font-semibold text-ink-gray-5 uppercase tracking-widest">CC Gateway Market</span>
+            <span class="text-2xs font-semibold text-ink-gray-5 tracking-wide">CC Gateway Market</span>
             <p class="text-xs text-ink-gray-5">RBI reports CC/DC data with ~45-day lag. Not yet available for this month.</p>
             <p class="text-2xs text-ink-gray-4">Switch to Jan 2025 for the last complete dataset.</p>
           </div>
@@ -405,7 +405,7 @@ export default function Pulse() {
         />
         {isNPCI ? (
           <div class="glass-card p-4 flex flex-col gap-2 justify-center">
-            <span class="text-2xs font-semibold text-ink-gray-5 uppercase tracking-widest">DC POS Swipes</span>
+            <span class="text-2xs font-semibold text-ink-gray-5 tracking-wide">DC POS Swipes</span>
             <p class="text-xs text-ink-gray-5">RBI reports DC POS data with ~45-day lag. Not yet available for this month.</p>
           </div>
         ) : (
@@ -456,7 +456,7 @@ export default function Pulse() {
         <div class={`grid gap-3 ${isNPCI ? 'grid-cols-2' : 'grid-cols-3'}`} data-tour="mdr-engine">
           {!isNPCI && (
             <div class="glass-card p-4">
-              <p class="text-2xs font-semibold text-ink-gray-5 uppercase tracking-widest mb-2 inline-flex items-center gap-1">
+              <p class="text-2xs font-semibold text-ink-gray-5 tracking-wide mb-2 inline-flex items-center gap-1">
                 CC MDR Pool
                 <InfoChip term="mdr_pool" />
               </p>
@@ -466,7 +466,7 @@ export default function Pulse() {
             </div>
           )}
           <div class="glass-card p-4">
-            <p class="text-2xs font-semibold text-ink-gray-5 uppercase tracking-widest mb-2 inline-flex items-center gap-1">
+            <p class="text-2xs font-semibold text-ink-gray-5 tracking-wide mb-2 inline-flex items-center gap-1">
               NACH MDR Pool
               <InfoChip term="mdr_pool" />
             </p>
@@ -475,7 +475,7 @@ export default function Pulse() {
             <p class="text-2xs text-ink-gray-6 mt-2 leading-snug">Fastest-growing fee rail. Every Subscriptions merchant compounds here monthly.</p>
           </div>
           <div class="glass-card p-4">
-            <p class="text-2xs font-semibold text-ink-gray-5 uppercase tracking-widest mb-2">{isNPCI ? 'NACH 1pp = MDR' : '1pp = MDR/month'}</p>
+            <p class="text-2xs font-semibold text-ink-gray-5 tracking-wide mb-2">{isNPCI ? 'NACH 1pp = MDR' : '1pp = MDR/month'}</p>
             <div class="text-xl font-bold text-ink-gray-9 tracking-tight">{fmtCr(isNPCI ? selected.nachDebitVal * 0.01 * NACH_MDR_RATE : onePpMDR)}</div>
             <p class="text-2xs text-ink-gray-5 mt-0.5">{isNPCI ? 'per 1% NACH share gain' : 'per 1% share gain across CC + NACH'}</p>
             <p class="text-2xs text-ink-gray-6 mt-2 leading-snug">{isNPCI ? 'CC data pending RBI release. NACH MDR economics only for this month.' : 'Revenue value of moving the market share needle by one point. That\'s your BD team\'s unit economics.'}</p>
@@ -487,7 +487,7 @@ export default function Pulse() {
       {!isLoading && selected && (
         <div class="glass-card overflow-hidden">
           <div class="px-5 py-3.5 border-b border-outline-gray-1 flex items-center gap-2">
-            <span class="text-2xs font-semibold text-ink-gray-5 uppercase tracking-widest">PG Playbook</span>
+            <span class="text-2xs font-semibold text-ink-gray-5 tracking-wide">PG Playbook</span>
             <span class="text-2xs text-ink-gray-5">· where to move the business this month</span>
           </div>
           <div class="divide-y divide-outline-gray-1">

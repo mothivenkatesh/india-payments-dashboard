@@ -29,7 +29,7 @@ function Delta({ v, label }: { v: number; label: string }) {
         <Icon name={pos ? 'arrow-up' : 'arrow-down'} size={9} />
         {Math.abs(v).toFixed(1)}%
       </span>
-      <span class="text-2xs text-ink-gray-5 uppercase tracking-wide leading-none">{label}</span>
+      <span class="text-2xs text-ink-gray-5 tracking-wide leading-none">{label}</span>
     </div>
   )
 }
@@ -47,7 +47,7 @@ export default function MetricTile({
         </span>
       )}
 
-      <span class="text-2xs font-semibold text-ink-gray-5 uppercase tracking-widest pr-8 inline-flex items-center gap-1">
+      <span class="text-2xs font-semibold text-ink-gray-5 tracking-wide pr-8 inline-flex items-center gap-1">
         {label}
         {term && <InfoChip term={term} />}
       </span>
@@ -73,7 +73,7 @@ export default function MetricTile({
               {pctRank !== undefined && (
                 <div class="flex flex-col gap-1 ml-auto min-w-16">
                   <div class="flex items-center justify-between gap-1">
-                    <span class="text-2xs text-ink-gray-5 uppercase tracking-wide leading-none">vs history</span>
+                    <span class="text-2xs text-ink-gray-5 tracking-wide leading-none">vs history</span>
                     <span class={clsx(
                       'text-2xs font-semibold leading-none',
                       pctRank >= 90 ? 'text-ink-green-2' : pctRank >= 50 ? 'text-ink-blue-2' : 'text-ink-red-3'

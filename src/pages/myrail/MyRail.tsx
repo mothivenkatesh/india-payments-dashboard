@@ -58,7 +58,7 @@ function GrowthVsMarket({ myMoM, mktMoM, label }: { myMoM: number | null; mktMoM
   const diff = myMoM - mktMoM
   return (
     <div class="glass-card p-4 space-y-2">
-      <p class="text-2xs text-ink-gray-6 uppercase tracking-widest">{label} — You vs Market</p>
+      <p class="text-2xs text-ink-gray-6 tracking-wide">{label} — You vs Market</p>
       <div class="flex items-end gap-4">
         <div>
           <p class={clsx('text-2xl font-bold', myMoM >= 0 ? 'text-ink-green-2' : 'text-ink-red-3')}>
@@ -186,7 +186,7 @@ export default function MyRail() {
         </div>
 
         <div class="border-t border-outline-gray-1 pt-4 space-y-3">
-          <p class="text-2xs font-semibold text-ink-gray-5 uppercase tracking-widest">UPI</p>
+          <p class="text-2xs font-semibold text-ink-gray-5 tracking-wide">UPI</p>
           <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
             <Field label="Volume" unit="Mn txns" value={form.upiVolume > 0 ? String(form.upiVolume) : ''} onChange={f('upiVolume')} placeholder="e.g. 850" />
             <Field label="Value" unit="₹ Cr" value={form.upiValue > 0 ? String(form.upiValue) : ''} onChange={f('upiValue')} placeholder="e.g. 12400" />
@@ -194,7 +194,7 @@ export default function MyRail() {
         </div>
 
         <div class="border-t border-outline-gray-1 pt-4 space-y-3">
-          <p class="text-2xs font-semibold text-ink-gray-5 uppercase tracking-widest">Cards</p>
+          <p class="text-2xs font-semibold text-ink-gray-5 tracking-wide">Cards</p>
           <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
             <Field label="CC Spend" unit="₹ Cr" value={form.ccSpend > 0 ? String(form.ccSpend) : ''} onChange={f('ccSpend')} placeholder="e.g. 3200" />
             <Field label="DC Spend" unit="₹ Cr" value={form.dcSpend > 0 ? String(form.dcSpend) : ''} onChange={f('dcSpend')} placeholder="e.g. 800" />
@@ -234,7 +234,7 @@ export default function MyRail() {
           {/* Share bars */}
           {(upiVolShare > 0 || upiValShare > 0 || ccShare > 0 || dcShare > 0) && (
             <div class="glass-card p-5 space-y-5">
-              <p class="text-2xs text-ink-gray-6 uppercase tracking-widest font-semibold">Your ecosystem share</p>
+              <p class="text-2xs text-ink-gray-6 tracking-wide font-semibold">Your ecosystem share</p>
               {upiVolShare > 0 && mktUPI && (
                 <ShareBar mine={data.upiVolume} total={mktUPI.volume} label={`UPI Volume — you: ${fmtVol(data.upiVolume)} / market: ${fmtVol(mktUPI.volume)}`} color="#3B82F6" />
               )}
@@ -253,7 +253,7 @@ export default function MyRail() {
           {/* Market context for this month */}
           {(mktUPI || mktCards) && (
             <div class="glass-card p-5 space-y-3">
-              <p class="text-2xs text-ink-gray-6 uppercase tracking-widest font-semibold">Market moved this in {MONTH_LABELS[data.month]}</p>
+              <p class="text-2xs text-ink-gray-6 tracking-wide font-semibold">Market moved this in {MONTH_LABELS[data.month]}</p>
               <div class="grid grid-cols-2 md:grid-cols-4 gap-3">
                 {mktUPI && (
                   <>
@@ -289,7 +289,7 @@ export default function MyRail() {
           {/* What this means */}
           {(upiVolShare > 0 || ccShare > 0) && (
             <div class="glass-card p-4 border-l-2 border-outline-blue-1 space-y-2">
-              <p class="text-2xs text-ink-gray-6 uppercase tracking-widest font-semibold text-ink-gray-6">What this means</p>
+              <p class="text-2xs text-ink-gray-6 tracking-wide font-semibold text-ink-gray-6">What this means</p>
               <div class="space-y-1">
                 {upiVolShare > 0 && (
                   <p class="text-sm text-ink-gray-8">

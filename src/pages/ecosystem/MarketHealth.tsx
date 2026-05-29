@@ -60,7 +60,7 @@ export default function MarketHealth() {
       <div class="space-y-2">
         {/* UPI strip */}
         <div class="flex items-center gap-2 px-1">
-          <span class="text-2xs font-semibold text-ink-blue-2 uppercase tracking-widest w-8">UPI</span>
+          <span class="text-2xs font-semibold text-ink-blue-2 tracking-wide w-8">UPI</span>
           <div class="flex-1 h-px bg-surface-blue-1" />
         </div>
         <div class="grid grid-cols-2 lg:grid-cols-4 gap-3">
@@ -75,7 +75,7 @@ export default function MarketHealth() {
                 <Icon name={icon} size={15} />
               </span>
               <div class="min-w-0">
-                <p class="text-2xs text-ink-gray-6 uppercase tracking-wider truncate">{label}</p>
+                <p class="text-2xs text-ink-gray-6 tracking-wide truncate">{label}</p>
                 <p class="text-base font-semibold text-ink-gray-9 leading-tight">{value}</p>
                 {delta !== undefined && (
                   <span class={clsx('text-2xs font-medium', delta >= 0 ? 'stat-positive' : 'stat-negative')}>
@@ -89,7 +89,7 @@ export default function MarketHealth() {
 
         {/* Cards strip */}
         <div class="flex items-center gap-2 px-1 mt-2">
-          <span class="text-2xs font-semibold text-ink-gray-6 uppercase tracking-widest w-12">Cards</span>
+          <span class="text-2xs font-semibold text-ink-gray-6 tracking-wide w-12">Cards</span>
           <div class="flex-1 h-px bg-surface-gray-2" />
         </div>
         <div class="grid grid-cols-2 lg:grid-cols-4 gap-3">
@@ -104,7 +104,7 @@ export default function MarketHealth() {
                 <Icon name={icon} size={15} />
               </span>
               <div class="min-w-0">
-                <p class="text-2xs text-ink-gray-6 uppercase tracking-wider truncate">{label}</p>
+                <p class="text-2xs text-ink-gray-6 tracking-wide truncate">{label}</p>
                 <p class="text-base font-semibold text-ink-gray-9 leading-tight">{value}</p>
                 {delta !== undefined && (
                   <span class={clsx('text-2xs font-medium', delta >= 0 ? 'stat-positive' : 'stat-negative')}>

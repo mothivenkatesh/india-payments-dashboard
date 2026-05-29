@@ -2,7 +2,6 @@
 import { Link, useLocation } from 'wouter-preact'
 import Icon from './Icon'
 import AppLogo from './AppLogo'
-import { useMode } from '../hooks/useMode'
 import clsx from 'clsx'
 
 const NAV = [
@@ -40,7 +39,6 @@ interface NavBarProps {
 
 export default function NavBar({ onFeedbackClick, onTourClick, mobileOpen = false, onMobileNavigate }: NavBarProps = {}) {
   const [location] = useLocation()
-  const [mode, setMode] = useMode()
 
   return (
     <aside
@@ -76,33 +74,11 @@ export default function NavBar({ onFeedbackClick, onTourClick, mobileOpen = fals
         )}
       </div>
 
-      {/* Global Volume / Value toggle */}
-      <div class="px-3 pt-3" data-tour="vol-val-toggle">
-        <div class="text-2xs font-semibold uppercase tracking-widest text-ink-gray-5 px-2 mb-1.5">View</div>
-        <div class="flex items-center gap-1 bg-surface-gray-1 border border-outline-gray-2 rounded-lg p-0.5">
-          {(['vol', 'val'] as const).map(m => (
-            <button
-              key={m}
-              type="button"
-              onClick={() => setMode(m)}
-              class={clsx(
-                'flex-1 px-2 py-1 text-2xs font-medium rounded transition-colors cursor-pointer',
-                mode === m
-                  ? 'bg-surface-white text-ink-gray-9 shadow-sm border border-outline-gray-2'
-                  : 'text-ink-gray-6 hover:text-ink-gray-8'
-              )}
-            >
-              {m === 'vol' ? 'Volume' : 'Value'}
-            </button>
-          ))}
-        </div>
-      </div>
-
       {/* Nav */}
       <nav class="flex-1 overflow-y-auto py-4 px-3 space-y-5" data-tour="sidebar-nav">
         {NAV.map(({ section, items }) => (
           <div key={section}>
-            <div class="text-2xs font-semibold uppercase tracking-widest text-ink-gray-5 px-2 mb-1.5">
+            <div class="text-2xs font-semibold tracking-wide text-ink-gray-5 px-2 mb-1.5">
               {section}
             </div>
             <div class="space-y-0.5">

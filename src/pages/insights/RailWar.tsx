@@ -126,7 +126,7 @@ export default function RailWar() {
       {/* Header — neutral macro finding leads */}
       <div class="flex items-start justify-between gap-6">
         <div class="min-w-0">
-          <div class="text-2xs font-semibold uppercase tracking-widest text-ink-gray-5 mb-1">
+          <div class="text-2xs font-semibold tracking-wide text-ink-gray-5 mb-1">
             Rail War · {slice.length} months
           </div>
           <h1 class="text-xl font-semibold text-ink-gray-9 leading-snug">
@@ -330,7 +330,7 @@ export default function RailWar() {
       {!isLoading && (
         <div class="glass-card p-4 border border-outline-blue-1">
           <div class="flex items-center gap-2 mb-2">
-            <span class="text-2xs font-semibold text-ink-blue-2 uppercase tracking-widest">Cashfree read</span>
+            <span class="text-2xs font-semibold text-ink-blue-2 tracking-wide">Cashfree read</span>
           </div>
           <div class="space-y-1">
             {(() => {

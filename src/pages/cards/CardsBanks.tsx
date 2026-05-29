@@ -162,7 +162,7 @@ function BankDetail({ bankName, bankData }: { bankName: string; bankData: Return
               { label: 'MoM CC',      val: momCC !== null ? `${momCC >= 0 ? '+' : ''}${momCC.toFixed(1)}%` : '—', trend: momCC },
             ].map(({ label, val, trend }) => (
               <div key={label} class="bg-surface-gray-1 rounded-lg p-3 border border-outline-gray-1">
-                <p class="text-2xs text-ink-gray-6 uppercase tracking-wider mb-1">{label}</p>
+                <p class="text-2xs text-ink-gray-6 tracking-wide mb-1">{label}</p>
                 <p class={clsx('text-lg font-semibold', trend !== undefined && trend !== null ? (trend >= 0 ? 'stat-positive' : 'stat-negative') : 'text-ink-gray-9')}>
                   {val}
                 </p>

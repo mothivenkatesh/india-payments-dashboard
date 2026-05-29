@@ -20,7 +20,7 @@ export default function KPICard({ label, value, sub, trend, icon, accentClass = 
   return (
     <div class="glass-card p-5 flex flex-col gap-2 overflow-hidden relative">
       <div class="flex items-center justify-between">
-        <span class="text-xs font-semibold text-ink-gray-5 uppercase tracking-wider">{label}</span>
+        <span class="text-xs font-semibold text-ink-gray-5 tracking-wide">{label}</span>
         <span class={clsx('p-1.5 rounded bg-surface-gray-1 shrink-0', accentClass)}>
           <Icon name={icon} size={15} />
         </span>

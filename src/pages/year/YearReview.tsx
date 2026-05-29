@@ -131,7 +131,7 @@ export default function YearReview() {
       {/* Header + year selector */}
       <div class="flex items-start justify-between gap-4">
         <div>
-          <div class="text-2xs font-semibold uppercase tracking-widest text-ink-gray-5 mb-1">Year review</div>
+          <div class="text-2xs font-semibold tracking-wide text-ink-gray-5 mb-1">Year review</div>
           <h1 class="text-xl font-semibold text-ink-gray-9 leading-snug">{selectedYear} in India payments</h1>
           <p class="text-xs text-ink-gray-6 mt-1">The year-on-year picture across UPI, cards, NACH, and BBPS.</p>
         </div>
@@ -171,7 +171,7 @@ export default function YearReview() {
             <div key={rail.id} class="glass-card p-4">
               <div class="flex items-center gap-2 mb-2">
                 <span class="w-2 h-2 rounded-full shrink-0" style={{ background: rail.color }} />
-                <span class="text-2xs font-semibold uppercase tracking-widest text-ink-gray-5">{rail.label}</span>
+                <span class="text-2xs font-semibold tracking-wide text-ink-gray-5">{rail.label}</span>
               </div>
               <div class="text-xl font-bold text-ink-gray-9 tracking-tight">{rail.yearTotal > 0 ? fmtCr(rail.yearTotal) : '—'}</div>
               <p class="text-2xs text-ink-gray-5 mt-0.5">

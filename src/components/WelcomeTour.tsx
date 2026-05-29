@@ -55,13 +55,6 @@ const STEPS: Step[] = [
   },
   {
     eyebrow: 'Step 4',
-    title: 'Volume vs Value, one click',
-    body: 'This toggle flips every chart on every page. Volume = transaction count. Value = rupee amount. Whichever lens you think in, set it once.',
-    target: '[data-tour="vol-val-toggle"]',
-    placement: 'right',
-  },
-  {
-    eyebrow: 'Step 5',
     title: 'The sidebar is your map',
     body: 'Each section answers a different question. Rails (cross-rail competition), Apps & Banks (leaderboards), Growth (what is accelerating), Year review (annual story), Data (raw table + CSV), Your numbers (BYO).',
     target: '[data-tour="sidebar-nav"]',
@@ -268,7 +261,7 @@ export default function WelcomeTour({ open, onClose }: WelcomeTourProps) {
 
           {/* Body */}
           <div class="p-5">
-            <div class="text-2xs font-semibold uppercase tracking-widest text-ink-blue-2 mb-2">{step.eyebrow}</div>
+            <div class="text-2xs font-semibold tracking-wide text-ink-blue-2 mb-2">{step.eyebrow}</div>
             <h2 id="tour-title" class="text-base font-semibold text-ink-gray-9 mb-2 leading-snug">{step.title}</h2>
             <p class="text-sm text-ink-gray-7 leading-relaxed">{step.body}</p>
             {step.bullets && (

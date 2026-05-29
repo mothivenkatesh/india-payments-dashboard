@@ -74,7 +74,7 @@ export default function Data() {
       {/* Header */}
       <div class="flex items-start justify-between gap-4">
         <div>
-          <div class="text-2xs font-semibold uppercase tracking-widest text-ink-gray-5 mb-1">Data</div>
+          <div class="text-2xs font-semibold tracking-wide text-ink-gray-5 mb-1">Data</div>
           <h1 class="text-xl font-semibold text-ink-gray-9 leading-snug">Browse the raw monthly data</h1>
           <p class="text-xs text-ink-gray-6 mt-1">
             All rails. Source-attributed per row.

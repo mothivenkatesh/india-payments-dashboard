@@ -85,7 +85,7 @@ export default function UPIApps() {
             { label: 'Val Share', value: rankRow ? `${rankRow.valShare.toFixed(1)}%` : '—', sub: 'of total UPI' },
           ].map(({ label, value, sub }) => (
             <div key={label} class="bg-surface-gray-1 rounded-lg p-3 border border-outline-gray-1">
-              <p class="text-2xs text-ink-gray-6 uppercase tracking-wider mb-1">{label}</p>
+              <p class="text-2xs text-ink-gray-6 tracking-wide mb-1">{label}</p>
               <p class="text-lg font-semibold text-ink-gray-9">{value}</p>
               <p class="text-2xs text-ink-gray-6 mt-0.5">{sub}</p>
             </div>
@@ -101,7 +101,7 @@ export default function UPIApps() {
           { label: 'CAGR', value: cagrVal, suffix: '%' },
         ].map(({ label, value, suffix }) => (
           <div key={label} class="glass-card p-4">
-            <p class="text-2xs text-ink-gray-6 uppercase tracking-wider mb-2">{label}</p>
+            <p class="text-2xs text-ink-gray-6 tracking-wide mb-2">{label}</p>
             {value !== null ? (
               <p class={clsx('text-2xl font-bold', value >= 0 ? 'stat-positive' : 'stat-negative')}>
                 {value >= 0 ? '+' : ''}{value.toFixed(1)}{suffix}

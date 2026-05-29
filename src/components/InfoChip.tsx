@@ -101,11 +101,8 @@ export default function InfoChip({ term, text, label }: InfoChipProps) {
         >
           <span class="block text-2xs font-semibold text-ink-blue-2 mb-1" style={{ overflowWrap: 'anywhere' }}>{headline}</span>
           <span class="block text-xs text-ink-gray-8 leading-relaxed" style={{ overflowWrap: 'anywhere' }}>{short}</span>
-          {long && open && (
-            <span class="block text-2xs text-ink-gray-6 leading-relaxed mt-2 pt-2 border-t border-outline-gray-1" style={{ overflowWrap: 'anywhere' }}>{long}</span>
-          )}
-          {long && !open && (
-            <span class="block text-2xs text-ink-gray-5 mt-2 italic">Click for more.</span>
+          {long && (
+            <span class="block text-2xs text-ink-gray-6 leading-relaxed mt-2" style={{ overflowWrap: 'anywhere' }}>{long}</span>
           )}
         </span>
       )}
