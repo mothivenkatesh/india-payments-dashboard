@@ -2,28 +2,31 @@
 import { Link, useLocation } from 'wouter-preact'
 import Icon from './Icon'
 import AppLogo from './AppLogo'
+import { useMode } from '../hooks/useMode'
 import clsx from 'clsx'
 
 const NAV = [
   {
     section: 'Command',
     items: [
-      { to: '/',          label: 'Pulse',          icon: 'zap',           desc: 'What changed?' },
-      { to: '/myrail',    label: 'My Rail',        icon: 'user',          desc: 'Your share vs market' },
+      { to: '/',          label: 'Overview',       icon: 'zap',           desc: 'What changed this month' },
+      { to: '/myrail',    label: 'Your numbers',   icon: 'user',          desc: 'Your share vs market' },
     ],
   },
   {
     section: 'Ecosystem',
     items: [
-      { to: '/market',    label: 'Market Health',  icon: 'share-2',       desc: 'State of payments' },
-      { to: '/growth',    label: 'Growth Signals', icon: 'trending-up',   desc: 'Accelerating vs slowing' },
-      { to: '/players',   label: 'Players',        icon: 'bar-chart-2',   desc: 'Who is winning' },
+      { to: '/market',    label: 'Market',         icon: 'share-2',       desc: 'State of payments' },
+      { to: '/growth',    label: 'Growth',         icon: 'trending-up',   desc: 'Accelerating vs slowing' },
+      { to: '/players',   label: 'Apps & Banks',   icon: 'bar-chart-2',   desc: 'Who is winning' },
     ],
   },
   {
     section: 'Insights',
     items: [
-      { to: '/insights',  label: 'Rail War',       icon: 'shuffle',       desc: 'UPI vs Cards at POS' },
+      { to: '/insights',  label: 'Rails',          icon: 'shuffle',       desc: 'UPI vs Cards at POS' },
+      { to: '/year',      label: 'Year review',    icon: 'award',         desc: 'Annual retrospective' },
+      { to: '/data',      label: 'Data',           icon: 'file-text',     desc: 'Browse + download' },
     ],
   },
 ]
@@ -34,6 +37,7 @@ interface NavBarProps {
 
 export default function NavBar({ onFeedbackClick }: NavBarProps = {}) {
   const [location] = useLocation()
+  const [mode, setMode] = useMode()
 
   return (
     <aside class="w-52 flex-shrink-0 flex flex-col bg-surface-menu-bar border-r border-outline-gray-1 h-screen sticky top-0">
@@ -47,6 +51,28 @@ export default function NavBar({ onFeedbackClick }: NavBarProps = {}) {
             <div class="text-sm font-semibold text-ink-gray-9 leading-tight">India Payments</div>
             <div class="text-2xs text-ink-gray-5 tracking-wide">Terminal</div>
           </div>
+        </div>
+      </div>
+
+      {/* Global Volume / Value toggle */}
+      <div class="px-3 pt-3">
+        <div class="text-2xs font-semibold uppercase tracking-widest text-ink-gray-5 px-2 mb-1.5">View</div>
+        <div class="flex items-center gap-1 bg-surface-gray-1 border border-outline-gray-2 rounded-lg p-0.5">
+          {(['vol', 'val'] as const).map(m => (
+            <button
+              key={m}
+              type="button"
+              onClick={() => setMode(m)}
+              class={clsx(
+                'flex-1 px-2 py-1 text-2xs font-medium rounded transition-colors cursor-pointer',
+                mode === m
+                  ? 'bg-surface-white text-ink-gray-9 shadow-sm border border-outline-gray-2'
+                  : 'text-ink-gray-6 hover:text-ink-gray-8'
+              )}
+            >
+              {m === 'vol' ? 'Volume' : 'Value'}
+            </button>
+          ))}
         </div>
       </div>
 

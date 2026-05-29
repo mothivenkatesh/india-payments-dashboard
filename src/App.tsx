@@ -8,6 +8,8 @@ import MarketHealth from './pages/ecosystem/MarketHealth'
 import Growth from './pages/ecosystem/Growth'
 import Players from './pages/ecosystem/Players'
 import RailWar from './pages/insights/RailWar'
+import YearReview from './pages/year/YearReview'
+import Data from './pages/data/Data'
 import MyRail from './pages/myrail/MyRail'
 
 export default function App() {
@@ -22,6 +24,8 @@ export default function App() {
           <Route path="/growth"   component={Growth}       />
           <Route path="/players"  component={Players}      />
           <Route path="/insights" component={RailWar}      />
+          <Route path="/year"     component={YearReview}   />
+          <Route path="/data"     component={Data}         />
           <Route path="/myrail"   component={MyRail}       />
         </Switch>
       </main>

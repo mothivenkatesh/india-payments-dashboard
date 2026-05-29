@@ -25,6 +25,51 @@ function lagDays(dateStr: string): number {
 const CC_MDR_RATE  = 0.0195  // 1.95% Cashfree standard MDR (promo 1.6% for new merchants)
 const NACH_MDR_RATE = 0.004  // ~0.4% effective NACH mandate fee
 
+// ── Narrative hero — synthesise the month into one English paragraph ───────
+function buildNarrative(latest: RBIMonthly | undefined, prev: RBIMonthly | undefined, yago: RBIMonthly | undefined): string {
+  if (!latest) return ''
+  const fmtCrInline = (v: number) =>
+    v >= 100000 ? `₹${(v/100000).toFixed(2)} L Cr` :
+    v >= 1000   ? `₹${(v/1000).toFixed(1)}K Cr`   :
+                  `₹${v.toFixed(0)} Cr`
+  const fmtBInline = (v: number) => v >= 1000 ? `${(v/1000).toFixed(2)}B` : `${v.toFixed(0)}M`
+  const pct = (a: number, b: number) => b > 0 ? ((a - b) / b) * 100 : null
+
+  const upiMoM = prev ? pct(latest.upiVal,    prev.upiVal)    : null
+  const ccYoY  = yago ? pct(latest.ccEcomVal, yago.ccEcomVal) : null
+  const nachYoY = yago ? pct(latest.nachDebitVal, yago.nachDebitVal) : null
+  const bbpsYoY = yago ? pct(latest.bbpsVal,  yago.bbpsVal)  : null
+
+  const parts: string[] = []
+  parts.push(
+    `In ${latest.label}, India processed ${fmtBInline(latest.upiVol)} UPI transactions worth ${fmtCrInline(latest.upiVal)}` +
+    (upiMoM !== null ? `, ${upiMoM >= 0 ? 'up' : 'down'} ${Math.abs(upiMoM).toFixed(1)}% from last month.` : '.')
+  )
+
+  const mdrLines: string[] = []
+  if (latest.ccEcomVal > 0) {
+    mdrLines.push(`CC eCommerce hit ${fmtCrInline(latest.ccEcomVal)}` + (ccYoY !== null ? ` (${ccYoY >= 0 ? '+' : ''}${ccYoY.toFixed(0)}% YoY)` : ''))
+  }
+  if (latest.nachDebitVal > 0) {
+    mdrLines.push(`NACH expanded to ${fmtCrInline(latest.nachDebitVal)}` + (nachYoY !== null ? ` (${nachYoY >= 0 ? '+' : ''}${nachYoY.toFixed(0)}% YoY)` : ''))
+  }
+  if (latest.bbpsVal > 0 && bbpsYoY !== null && bbpsYoY > 30) {
+    mdrLines.push(`BBPS continued its breakout at ${fmtCrInline(latest.bbpsVal)} (+${bbpsYoY.toFixed(0)}% YoY)`)
+  }
+  if (mdrLines.length > 0) {
+    parts.push(`On the fee-bearing rails — ${mdrLines.join(', ')}.`)
+  }
+
+  const ccMDRPool = latest.ccEcomVal * CC_MDR_RATE
+  const nachMDRPool = latest.nachDebitVal * NACH_MDR_RATE
+  const totalPool = ccMDRPool + nachMDRPool
+  if (totalPool > 0) {
+    parts.push(`The MDR pool payable across the gateway market this month is ${fmtCrInline(totalPool)}.`)
+  }
+
+  return parts.join(' ')
+}
+
 // ── Rail insight engine — two modes ─────────────────────────────────────────
 function buildInsights(latest: RBIMonthly | undefined, months: RBIMonthly[], mode: 'cashfree' | 'market'): string[] {
   if (!latest) return []
@@ -145,6 +190,10 @@ export default function Pulse() {
 
   const insights = buildInsights(selected, months.slice(0, selectedIdx + 1), viewMode)
 
+  // Narrative paragraph hero — state of the month in plain English
+  const prevSelected = selectedIdx > 0 ? months[selectedIdx - 1] : undefined
+  const story = buildNarrative(selected, prevSelected, yago)
+
   // ── MDR Revenue Model (PA-PG) ──────────────────────────────────────────────
   const ccMDRPool   = selected ? selected.ccEcomVal * CC_MDR_RATE : 0
   const nachMDRPool = selected ? selected.nachDebitVal * NACH_MDR_RATE : 0
@@ -221,6 +270,16 @@ export default function Pulse() {
           <FreshnessPill dataDate={selected?.label} lagDays={lag} />
         </div>
       </div>
+
+      {/* Narrative hero — state of the month */}
+      {!isLoading && story && (
+        <div class="glass-card p-5">
+          <p class="text-sm text-ink-gray-8 leading-relaxed">{story}</p>
+        </div>
+      )}
+      {isLoading && (
+        <div class="glass-card p-5 h-20 bg-surface-gray-1 animate-pulse rounded-xl" />
+      )}
 
       {/* My Rail banner */}
       {hasMyRail && (

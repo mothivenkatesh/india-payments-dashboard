@@ -1,7 +1,7 @@
 /** @jsxImportSource preact */
-import { useState } from 'preact/hooks'
 import Icon from '../../components/Icon'
 import AppLogo from '../../components/AppLogo'
+import { useMode } from '../../hooks/useMode'
 import FreshnessPill from '../../components/FreshnessPill'
 import BarChart from '../../components/charts/BarChart'
 import DoughnutChart from '../../components/charts/DoughnutChart'
@@ -24,7 +24,7 @@ function lagDays(d: string) {
 const CARD_COLORS = { CC_POS:'#3B82F6', CC_ONLINE:'#8B5CF6', CC_ATM:'#0EA5E9', DC_POS:'#10B981', DC_ONLINE:'#34D399', DC_ATM:'#6EE7B7' }
 
 export default function MarketHealth() {
-  const [barMode, setBarMode] = useState<'vol'|'val'>('vol')
+  const [barMode, setBarMode] = useMode()
   const app = useUPIAppData()
   const { data: timeSeries } = useUPITimeSeries()
   const { monthly: cardMonthly, latest: cardLatest, isLoading: cardsLoading } = useCardsTimeSeries()

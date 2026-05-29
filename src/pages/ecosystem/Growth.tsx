@@ -5,6 +5,7 @@ import LineChart from '../../components/charts/LineChart'
 import BarChart from '../../components/charts/BarChart'
 import { useUPIAppData, useUPITimeSeries } from '../../hooks/useUpiData'
 import { useCardsTimeSeries } from '../../hooks/useCardsData'
+import { useMode } from '../../hooks/useMode'
 import { APP_COLORS } from '../../data/upiAppData'
 import clsx from 'clsx'
 
@@ -16,7 +17,7 @@ const TOP_APPS = ['PhonePe', 'Google Pay', 'Paytm', 'Navi', 'Others']
 export default function Growth() {
   const [tab, setTab] = useState<Tab>('upi')
   const [selected, setSelected] = useState(['PhonePe', 'Google Pay', 'Paytm'])
-  const [mode, setMode] = useState<'vol' | 'val'>('vol')
+  const [mode, setMode] = useMode()
 
   const app = useUPIAppData()
   const { data: upiRaw } = useUPITimeSeries()
