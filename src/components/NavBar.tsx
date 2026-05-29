@@ -98,7 +98,7 @@ export default function NavBar({ onFeedbackClick, onTourClick, mobileOpen = fals
                   >
                     <Icon
                       name={icon}
-                      size={16}
+                      size={24}
                       className={active ? 'text-ink-blue-2' : ''}
                     />
                     <div class="min-w-0 flex-1">
