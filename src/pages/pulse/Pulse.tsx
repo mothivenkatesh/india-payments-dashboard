@@ -274,7 +274,7 @@ export default function Pulse() {
 
       {/* Narrative hero — state of the month */}
       {!isLoading && story && (
-        <div class="glass-card p-5">
+        <div class="glass-card p-5" data-tour="narrative-hero">
           <p class="text-sm text-ink-gray-8 leading-relaxed">{story}</p>
         </div>
       )}
@@ -346,7 +346,7 @@ export default function Pulse() {
       {isLoading && <div class="glass-card p-4 h-20 bg-surface-gray-1 animate-pulse rounded-xl" />}
 
       {/* Rail metrics — row 1: fee-bearing rails */}
-      <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-3" data-tour="metric-tiles">
         {isNPCI ? (
           <div class="glass-card p-4 flex flex-col gap-2 justify-center">
             <span class="text-2xs font-semibold text-ink-gray-5 uppercase tracking-widest">CC Gateway Market</span>
@@ -453,7 +453,7 @@ export default function Pulse() {
 
       {/* PG Revenue Engine */}
       {!isLoading && selected && (
-        <div class={`grid gap-3 ${isNPCI ? 'grid-cols-2' : 'grid-cols-3'}`}>
+        <div class={`grid gap-3 ${isNPCI ? 'grid-cols-2' : 'grid-cols-3'}`} data-tour="mdr-engine">
           {!isNPCI && (
             <div class="glass-card p-4">
               <p class="text-2xs font-semibold text-ink-gray-5 uppercase tracking-widest mb-2 inline-flex items-center gap-1">

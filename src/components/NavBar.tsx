@@ -56,7 +56,7 @@ export default function NavBar({ onFeedbackClick, onTourClick }: NavBarProps = {
       </div>
 
       {/* Global Volume / Value toggle */}
-      <div class="px-3 pt-3">
+      <div class="px-3 pt-3" data-tour="vol-val-toggle">
         <div class="text-2xs font-semibold uppercase tracking-widest text-ink-gray-5 px-2 mb-1.5">View</div>
         <div class="flex items-center gap-1 bg-surface-gray-1 border border-outline-gray-2 rounded-lg p-0.5">
           {(['vol', 'val'] as const).map(m => (
@@ -78,7 +78,7 @@ export default function NavBar({ onFeedbackClick, onTourClick }: NavBarProps = {
       </div>
 
       {/* Nav */}
-      <nav class="flex-1 overflow-y-auto py-4 px-3 space-y-5">
+      <nav class="flex-1 overflow-y-auto py-4 px-3 space-y-5" data-tour="sidebar-nav">
         {NAV.map(({ section, items }) => (
           <div key={section}>
             <div class="text-2xs font-semibold uppercase tracking-widest text-ink-gray-5 px-2 mb-1.5">
@@ -115,7 +115,7 @@ export default function NavBar({ onFeedbackClick, onTourClick }: NavBarProps = {
       </nav>
 
       {/* Footer */}
-      <div class="px-4 py-3 border-t border-outline-gray-1 space-y-2">
+      <div class="px-4 py-3 border-t border-outline-gray-1 space-y-2" data-tour="sidebar-footer">
         <div class="space-y-1.5">
           <div class="flex items-center gap-1.5">
             <AppLogo name="RBI" size={14} rounded="sm" />
