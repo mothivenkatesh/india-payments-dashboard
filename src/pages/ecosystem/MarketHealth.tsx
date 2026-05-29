@@ -46,7 +46,7 @@ export default function MarketHealth() {
   const lag = trend24.length > 0 ? lagDays(trend24[trend24.length-1].date ?? '2025-01') : undefined
 
   return (
-    <div class="space-y-6 max-w-7xl">
+    <div class="space-y-6 max-w-[1800px] mx-auto">
       {/* Header */}
       <div class="flex items-center justify-between">
         <div>

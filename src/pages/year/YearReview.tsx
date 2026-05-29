@@ -126,7 +126,7 @@ export default function YearReview() {
   const bbps = summary.find(r => r.id === 'bbps')!
 
   return (
-    <div class="space-y-6 max-w-7xl">
+    <div class="space-y-6 max-w-[1800px] mx-auto">
 
       {/* Header + year selector */}
       <div class="flex items-start justify-between gap-4">

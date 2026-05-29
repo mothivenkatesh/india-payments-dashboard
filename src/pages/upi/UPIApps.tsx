@@ -42,7 +42,7 @@ export default function UPIApps() {
   const rankRow = app.latestRanked.find(r => r.app === selected)
 
   return (
-    <div class="space-y-6 max-w-7xl">
+    <div class="space-y-6 max-w-[1800px] mx-auto">
       <div>
         <h1 class="text-xl font-semibold text-ink-gray-9">App Deep Dive</h1>
         <p class="text-xs text-ink-gray-6 mt-0.5">Full trend, growth metrics, and monthly table per app</p>

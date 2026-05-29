@@ -37,7 +37,7 @@ export default function CardsOverview() {
   const CARD_COLORS = { CC_POS: '#3B82F6', CC_ONLINE: '#8B5CF6', CC_ATM: '#0EA5E9', DC_POS: '#10B981', DC_ONLINE: '#34D399', DC_ATM: '#6EE7B7' }
 
   return (
-    <div class="space-y-6 max-w-7xl">
+    <div class="space-y-6 max-w-[1800px] mx-auto">
       {/* Header */}
       <div class="flex items-center justify-between">
         <div>

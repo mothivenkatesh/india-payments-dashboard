@@ -38,7 +38,7 @@ export default function UPIOverview() {
     : 0
 
   return (
-    <div class="space-y-6 max-w-7xl">
+    <div class="space-y-6 max-w-[1800px] mx-auto">
       {/* Header */}
       <div class="flex items-center justify-between">
         <div>

@@ -27,7 +27,7 @@ export default function CardsBanks() {
   const top10 = filtered.slice(0, 10)
 
   return (
-    <div class="space-y-6 max-w-7xl">
+    <div class="space-y-6 max-w-[1800px] mx-auto">
       <div class="flex items-center justify-between">
         <div>
           <h1 class="text-xl font-semibold text-ink-gray-9">Bank Deep Dive</h1>

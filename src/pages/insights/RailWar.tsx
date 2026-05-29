@@ -121,7 +121,7 @@ export default function RailWar() {
     .filter(i => i >= 0)
 
   return (
-    <div class="space-y-6 max-w-7xl">
+    <div class="space-y-6 max-w-[1800px] mx-auto">
 
       {/* Header — neutral macro finding leads */}
       <div class="flex items-start justify-between gap-6">

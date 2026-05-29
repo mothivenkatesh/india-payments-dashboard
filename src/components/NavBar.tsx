@@ -34,16 +34,25 @@ const NAV = [
 interface NavBarProps {
   onFeedbackClick?: () => void
   onTourClick?: () => void
+  mobileOpen?: boolean
+  onMobileNavigate?: () => void
 }
 
-export default function NavBar({ onFeedbackClick, onTourClick }: NavBarProps = {}) {
+export default function NavBar({ onFeedbackClick, onTourClick, mobileOpen = false, onMobileNavigate }: NavBarProps = {}) {
   const [location] = useLocation()
   const [mode, setMode] = useMode()
 
   return (
-    <aside class="w-52 flex-shrink-0 flex flex-col bg-surface-menu-bar border-r border-outline-gray-1 h-screen sticky top-0">
+    <aside class={clsx(
+      'flex flex-col bg-surface-menu-bar border-r border-outline-gray-1 h-screen z-40 transition-transform duration-200',
+      // Drawer behaviour below lg
+      'fixed inset-y-0 left-0 w-64',
+      mobileOpen ? 'translate-x-0' : '-translate-x-full',
+      // Static sidebar at lg+
+      'lg:static lg:translate-x-0 lg:w-52 lg:flex-shrink-0 lg:sticky lg:top-0 2xl:w-60'
+    )}>
       {/* Logo */}
-      <div class="px-4 py-5 border-b border-outline-gray-1">
+      <div class="px-4 py-5 border-b border-outline-gray-1 flex items-center justify-between">
         <div class="flex items-center gap-2.5">
           <span class="w-7 h-7 rounded-lg bg-surface-blue-1 border border-outline-blue-1 flex items-center justify-center">
             <Icon name="credit-card" size={15} className="text-ink-blue-2" />
@@ -53,6 +62,16 @@ export default function NavBar({ onFeedbackClick, onTourClick }: NavBarProps = {
             <div class="text-2xs text-ink-gray-5 tracking-wide">Terminal</div>
           </div>
         </div>
+        {onMobileNavigate && (
+          <button
+            type="button"
+            onClick={onMobileNavigate}
+            class="lg:hidden w-7 h-7 flex items-center justify-center rounded text-ink-gray-6 hover:text-ink-gray-9 hover:bg-surface-gray-2 transition-colors cursor-pointer"
+            aria-label="Close navigation"
+          >
+            <span class="text-lg leading-none">×</span>
+          </button>
+        )}
       </div>
 
       {/* Global Volume / Value toggle */}
@@ -91,6 +110,7 @@ export default function NavBar({ onFeedbackClick, onTourClick }: NavBarProps = {
                   <Link
                     key={to}
                     href={to}
+                    onClick={onMobileNavigate}
                     class={clsx(
                       'flex items-center gap-2.5 px-2.5 py-1.5 rounded text-sm transition-colors duration-150 cursor-pointer',
                       active

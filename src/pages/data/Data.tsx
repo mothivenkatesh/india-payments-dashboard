@@ -69,7 +69,7 @@ export default function Data() {
   const latest = months[months.length - 1]
 
   return (
-    <div class="space-y-6 max-w-7xl">
+    <div class="space-y-6 max-w-[1800px] mx-auto">
 
       {/* Header */}
       <div class="flex items-start justify-between gap-4">

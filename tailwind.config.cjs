@@ -174,7 +174,7 @@ const frappePlugin = plugin(
         '2xl': ['20px', { lineHeight: '1.15', letterSpacing: '0.01em', fontWeight: '400' }],
         '3xl': ['24px', { lineHeight: '1.15', letterSpacing: '0.005em', fontWeight: '400' }],
       },
-      screens: { sm: '640px', md: '768px', lg: '1024px', xl: '1280px' },
+      screens: { sm: '640px', md: '768px', lg: '1024px', xl: '1280px', '2xl': '1536px', '3xl': '1920px' },
       extend: {
         textColor: { ink: semanticColors.ink },
         backgroundColor: { surface: semanticColors.surface },
