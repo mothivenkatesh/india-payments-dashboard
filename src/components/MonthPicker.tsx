@@ -14,6 +14,7 @@ interface MonthPickerProps {
 
 export default function MonthPicker({ options, value, onChange }: MonthPickerProps) {
   const [open, setOpen] = useState(false)
+  const [placeUp, setPlaceUp] = useState(false)
   const ref = useRef<HTMLDivElement>(null)
 
   const selected = options.find(o => o.value === value)
@@ -26,6 +27,15 @@ export default function MonthPicker({ options, value, onChange }: MonthPickerPro
     }
     if (open) document.addEventListener('mousedown', handleClick)
     return () => document.removeEventListener('mousedown', handleClick)
+  }, [open])
+
+  // Flip the dropdown upward when there isn't room for it below the trigger.
+  useEffect(() => {
+    if (!open) return
+    const r = ref.current?.getBoundingClientRect()
+    if (!r) return
+    const DROPDOWN_MAX = 280
+    setPlaceUp(r.bottom + DROPDOWN_MAX > window.innerHeight && r.top > DROPDOWN_MAX)
   }, [open])
 
   return (
@@ -45,7 +55,7 @@ export default function MonthPicker({ options, value, onChange }: MonthPickerPro
       </button>
 
       {open && (
-        <div class="absolute right-0 top-full mt-1 z-50 w-40 max-h-64 overflow-y-auto rounded-lg border border-outline-gray-2 bg-surface-white shadow-lg py-1">
+        <div class={`absolute right-0 ${placeUp ? 'bottom-full mb-1' : 'top-full mt-1'} z-50 w-40 max-h-64 overflow-y-auto rounded-lg border border-outline-gray-2 bg-surface-white shadow-lg py-1`}>
           {options.map(o => (
             <button
               key={o.value}
