@@ -33,9 +33,10 @@ const NAV = [
 
 interface NavBarProps {
   onFeedbackClick?: () => void
+  onTourClick?: () => void
 }
 
-export default function NavBar({ onFeedbackClick }: NavBarProps = {}) {
+export default function NavBar({ onFeedbackClick, onTourClick }: NavBarProps = {}) {
   const [location] = useLocation()
   const [mode, setMode] = useMode()
 
@@ -125,6 +126,16 @@ export default function NavBar({ onFeedbackClick }: NavBarProps = {}) {
             <p class="text-2xs text-ink-gray-5">NPCI · live UPI, NACH, BBPS (~15d)</p>
           </div>
         </div>
+        {onTourClick && (
+          <button
+            type="button"
+            onClick={onTourClick}
+            class="flex items-center gap-1.5 text-2xs text-ink-gray-6 hover:text-ink-gray-9 transition-colors cursor-pointer"
+          >
+            <Icon name="zap" size={11} />
+            <span class="underline underline-offset-2">Take the tour</span>
+          </button>
+        )}
         {onFeedbackClick && (
           <button
             type="button"

@@ -1,5 +1,6 @@
 /** @jsxImportSource preact */
 import Icon from './Icon'
+import InfoChip from './InfoChip'
 import clsx from 'clsx'
 
 interface MetricTileProps {
@@ -13,6 +14,8 @@ interface MetricTileProps {
   pctRank?: number
   anomalyZ?: number
   loading?: boolean
+  /** Glossary term key — renders a "?" chip next to the label. */
+  term?: string
 }
 
 function Delta({ v, label }: { v: number; label: string }) {
@@ -32,7 +35,7 @@ function Delta({ v, label }: { v: number; label: string }) {
 }
 
 export default function MetricTile({
-  label, value, unit, sub, context, mom, yoy, pctRank, anomalyZ, loading
+  label, value, unit, sub, context, mom, yoy, pctRank, anomalyZ, loading, term
 }: MetricTileProps) {
   const isAnomaly = anomalyZ !== undefined && Math.abs(anomalyZ) >= 2
 
@@ -44,7 +47,10 @@ export default function MetricTile({
         </span>
       )}
 
-      <span class="text-2xs font-semibold text-ink-gray-5 uppercase tracking-widest pr-8">{label}</span>
+      <span class="text-2xs font-semibold text-ink-gray-5 uppercase tracking-widest pr-8 inline-flex items-center gap-1">
+        {label}
+        {term && <InfoChip term={term} />}
+      </span>
 
       {loading ? (
         <div class="space-y-2 flex-1">

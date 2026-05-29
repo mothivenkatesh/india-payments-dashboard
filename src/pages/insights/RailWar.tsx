@@ -2,6 +2,7 @@
 import { useState, useMemo } from 'preact/hooks'
 import { useRBIMonthly } from '../../hooks/useRBIData'
 import LineChart from '../../components/charts/LineChart'
+import InfoChip from '../../components/InfoChip'
 import type { RBIMonthly } from '../../api/rbiDaily'
 
 // ── Rail definitions ────────────────────────────────────────────────────────
@@ -134,8 +135,10 @@ export default function RailWar() {
           {head.tail && (
             <p class="text-sm text-ink-gray-7 mt-1">{head.tail}</p>
           )}
-          <p class="text-2xs text-ink-gray-5 mt-2">
-            Indexed to 100 at {slice[0]?.label ?? '—'}. Higher = more growth since.
+          <p class="text-2xs text-ink-gray-5 mt-2 inline-flex items-center gap-1">
+            <span>Indexed</span>
+            <InfoChip term="indexed" />
+            <span>to 100 at {slice[0]?.label ?? '—'}. Higher = more growth since.</span>
           </p>
         </div>
 

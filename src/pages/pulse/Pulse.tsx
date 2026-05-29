@@ -7,6 +7,7 @@ import FreshnessPill from '../../components/FreshnessPill'
 import LineChart from '../../components/charts/LineChart'
 import Icon from '../../components/Icon'
 import AppLogo from '../../components/AppLogo'
+import InfoChip from '../../components/InfoChip'
 import { percentileRank } from '../../utils/anomaly'
 import MonthPicker from '../../components/MonthPicker'
 import type { RBIMonthly } from '../../api/rbiDaily'
@@ -355,6 +356,7 @@ export default function Pulse() {
         ) : (
           <MetricTile
             label="CC Gateway Market"
+            term="ccecom"
             value={selected ? fmtCr(selected.ccEcomVal) : '—'}
             unit="online card processing"
             context={ccEcomContext}
@@ -366,6 +368,7 @@ export default function Pulse() {
         )}
         <MetricTile
           label="UPI Value"
+          term="upi"
           value={selected ? fmtCr(selected.upiVal) : '—'}
           unit={selected ? fmtB(selected.upiVol) + ' transactions' : 'transactions'}
           context={upiContext}
@@ -376,6 +379,7 @@ export default function Pulse() {
         />
         <MetricTile
           label="Subscriptions Market"
+          term="nach"
           value={selected ? fmtCr(selected.nachDebitVal) : '—'}
           unit="NACH recurring mandates"
           context={nachContext}
@@ -390,6 +394,7 @@ export default function Pulse() {
       <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
         <MetricTile
           label="Bills & Utilities"
+          term="bbps"
           value={selected ? fmtCr(selected.bbpsVal) : '—'}
           unit="BBPS transactions"
           context="Bharat Bill Pay. Utility billers, insurance, subscriptions. Early-mover advantage window."
@@ -406,6 +411,7 @@ export default function Pulse() {
         ) : (
           <MetricTile
             label="DC POS Swipes"
+            term="dcpos"
             value={selected ? fmtCr(selected.dcPosVal) : '—'}
             unit="offline merchant terminals"
             context={dcContext}
@@ -450,14 +456,20 @@ export default function Pulse() {
         <div class={`grid gap-3 ${isNPCI ? 'grid-cols-2' : 'grid-cols-3'}`}>
           {!isNPCI && (
             <div class="glass-card p-4">
-              <p class="text-2xs font-semibold text-ink-gray-5 uppercase tracking-widest mb-2">CC MDR Pool</p>
+              <p class="text-2xs font-semibold text-ink-gray-5 uppercase tracking-widest mb-2 inline-flex items-center gap-1">
+                CC MDR Pool
+                <InfoChip term="mdr_pool" />
+              </p>
               <div class="text-xl font-bold text-ink-gray-9 tracking-tight">{fmtCr(ccMDRPool)}</div>
               <p class="text-2xs text-ink-gray-5 mt-0.5">per month · 1.95% on {fmtCr(selected.ccEcomVal)}</p>
               <p class="text-2xs text-ink-gray-6 mt-2 leading-snug">Total MDR payable by merchants to all PGs this month. This is the market you compete for.</p>
             </div>
           )}
           <div class="glass-card p-4">
-            <p class="text-2xs font-semibold text-ink-gray-5 uppercase tracking-widest mb-2">NACH MDR Pool</p>
+            <p class="text-2xs font-semibold text-ink-gray-5 uppercase tracking-widest mb-2 inline-flex items-center gap-1">
+              NACH MDR Pool
+              <InfoChip term="mdr_pool" />
+            </p>
             <div class="text-xl font-bold text-ink-gray-9 tracking-tight">{fmtCr(nachMDRPool)}</div>
             <p class="text-2xs text-ink-gray-5 mt-0.5">per month · ~0.4% on {fmtCr(selected.nachDebitVal)}</p>
             <p class="text-2xs text-ink-gray-6 mt-2 leading-snug">Fastest-growing fee rail. Every Subscriptions merchant compounds here monthly.</p>

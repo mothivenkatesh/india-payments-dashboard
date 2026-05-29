@@ -2,6 +2,7 @@
 import { useMemo, useState } from 'preact/hooks'
 import { useRBIMonthly } from '../../hooks/useRBIData'
 import LineChart from '../../components/charts/LineChart'
+import InfoChip from '../../components/InfoChip'
 import type { RBIMonthly } from '../../api/rbiDaily'
 
 // ── Formatters ──────────────────────────────────────────────────────────────
@@ -180,8 +181,10 @@ export default function YearReview() {
                 )}
               </p>
               {rail.yoy !== null && (
-                <p class={`text-xs font-medium mt-2 ${rail.yoy >= 0 ? 'stat-positive' : 'stat-negative'}`}>
-                  {fmtPct(rail.yoy)} <span class="text-ink-gray-5 font-normal">avg/mo vs {selectedYear - 1}</span>
+                <p class={`text-xs font-medium mt-2 inline-flex items-center gap-1 ${rail.yoy >= 0 ? 'stat-positive' : 'stat-negative'}`}>
+                  {fmtPct(rail.yoy)}
+                  <span class="text-ink-gray-5 font-normal">avg/mo vs {selectedYear - 1}</span>
+                  <InfoChip term="yoy" />
                 </p>
               )}
             </div>

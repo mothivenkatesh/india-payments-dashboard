@@ -2,6 +2,7 @@
 import { useMemo, useState } from 'preact/hooks'
 import { useRBIMonthly } from '../../hooks/useRBIData'
 import Icon from '../../components/Icon'
+import InfoChip from '../../components/InfoChip'
 import type { RBIMonthly } from '../../api/rbiDaily'
 
 const fmtCr = (v: number) => v > 0 ? Math.round(v).toLocaleString('en-IN') : ''
@@ -134,7 +135,12 @@ export default function Data() {
               <thead>
                 <tr class="border-b border-outline-gray-1 bg-surface-gray-1">
                   <th class="text-left px-4 py-2.5 text-ink-gray-6 font-medium whitespace-nowrap sticky left-0 bg-surface-gray-1">Month</th>
-                  <th class="text-left px-4 py-2.5 text-ink-gray-6 font-medium whitespace-nowrap">Source</th>
+                  <th class="text-left px-4 py-2.5 text-ink-gray-6 font-medium whitespace-nowrap">
+                    <span class="inline-flex items-center gap-1">
+                      Source
+                      <InfoChip term="ckan" />
+                    </span>
+                  </th>
                   {COLS.map(c => (
                     <th key={c.id} class="text-right px-4 py-2.5 text-ink-gray-6 font-medium whitespace-nowrap">
                       {c.label}
