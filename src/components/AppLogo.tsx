@@ -4,10 +4,10 @@ import clsx from 'clsx'
 import Icon from './Icon'
 
 /**
- * AppLogo — renders an official company logo via Google's S2 favicon API
- * (Clearbit's free logo endpoint was sunset Dec 2024). Falls back to a
- * neutral briefcase icon when the logo can't load. No first-letter dummy
- * tile, so tables stay clean even for unknown names.
+ * AppLogo — renders the actual brand logo via Brandfetch's public CDN
+ * (returns real brand marks at 300-500px, not 32px favicons). Falls back
+ * to Google's S2 favicon, then to a neutral briefcase icon. No
+ * first-letter dummy tile, so tables stay clean even for unknown names.
  *
  * Pass either a known `name` (UPI app, bank, data source) or an explicit
  * `domain` override.
@@ -151,11 +151,17 @@ export default function AppLogo({
   className,
   rounded = 'lg',
 }: Props) {
-  const [failed, setFailed] = useState(false)
+  // Two-stage logo loading: try Brandfetch CDN (real brand logos) first,
+  // fall back to Google S2 favicon (always renders something), then to a
+  // neutral briefcase icon.
+  const [stage, setStage] = useState<'brand' | 's2' | 'failed'>('brand')
   const resolved = resolveDomain(name, domain)
-  // Google's S2 favicon endpoint — free, no auth, returns 128×128 PNG.
-  // Clearbit Logo API was sunset Dec 2024.
-  const logoUrl = resolved ? `https://www.google.com/s2/favicons?domain=${resolved}&sz=128` : ''
+  const logoUrl = !resolved ? ''
+    : stage === 'brand' ? `https://cdn.brandfetch.io/${resolved}/w/256/h/256`
+    : stage === 's2'    ? `https://www.google.com/s2/favicons?domain=${resolved}&sz=128`
+    : ''
+  const failed = stage === 'failed'
+  const setFailed = () => setStage(s => s === 'brand' ? 's2' : 'failed')
   const radiusClass = `rounded-${rounded}`
 
   if (failed || !logoUrl) {
@@ -181,7 +187,7 @@ export default function AppLogo({
       height={size}
       class={clsx('shrink-0 bg-white object-contain border border-outline-gray-1', radiusClass, className)}
       style={{ width: size, height: size, padding: Math.max(1, size * 0.06) }}
-      onError={() => setFailed(true)}
+      onError={setFailed}
       loading="lazy"
     />
   )
