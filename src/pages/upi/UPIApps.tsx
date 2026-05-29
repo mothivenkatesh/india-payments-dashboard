@@ -84,7 +84,7 @@ export default function UPIApps() {
             { label: 'Vol Share', value: rankRow ? `${rankRow.volShare.toFixed(1)}%` : '—', sub: 'of total UPI' },
             { label: 'Val Share', value: rankRow ? `${rankRow.valShare.toFixed(1)}%` : '—', sub: 'of total UPI' },
           ].map(({ label, value, sub }) => (
-            <div key={label} class="bg-white/[0.03] rounded-lg p-3 border border-outline-gray-1">
+            <div key={label} class="bg-surface-gray-1 rounded-lg p-3 border border-outline-gray-1">
               <p class="text-2xs text-ink-gray-6 uppercase tracking-wider mb-1">{label}</p>
               <p class="text-lg font-semibold text-ink-gray-9">{value}</p>
               <p class="text-2xs text-ink-gray-6 mt-0.5">{sub}</p>
@@ -171,7 +171,7 @@ export default function UPIApps() {
                 const vMoM = prevRow && prevRow.volume > 0 ? ((row.volume - prevRow.volume) / prevRow.volume) * 100 : null
                 const valMoM = prevRow && prevRow.value > 0 ? ((row.value - prevRow.value) / prevRow.value) * 100 : null
                 return (
-                  <tr key={row.date} class="border-b border-outline-gray-1 hover:bg-white/[0.02] transition-colors">
+                  <tr key={row.date} class="border-b border-outline-gray-1 hover:bg-surface-gray-1 transition-colors">
                     <td class="px-4 py-2.5 text-ink-gray-9 font-medium">{row.label}</td>
                     <td class="px-4 py-2.5 text-ink-gray-9 tabular-nums">{fmt(row.volume, 'vol')}</td>
                     <td class="px-4 py-2.5 text-ink-gray-9 tabular-nums">{fmt(row.value, 'val')}</td>

@@ -43,14 +43,16 @@ export default function NavBar({ onFeedbackClick, onTourClick, mobileOpen = fals
   const [mode, setMode] = useMode()
 
   return (
-    <aside class={clsx(
-      'flex flex-col bg-surface-menu-bar border-r border-outline-gray-1 h-screen z-40 transition-transform duration-200',
-      // Drawer behaviour below lg
-      'fixed inset-y-0 left-0 w-64',
-      mobileOpen ? 'translate-x-0' : '-translate-x-full',
-      // Static sidebar at lg+
-      'lg:static lg:translate-x-0 lg:w-52 lg:flex-shrink-0 lg:sticky lg:top-0 2xl:w-60'
-    )}>
+    <aside
+      data-theme="dark"
+      class={clsx(
+        'flex flex-col bg-surface-menu-bar border-r border-outline-gray-1 h-screen z-40 transition-transform duration-200',
+        // Drawer behaviour below lg
+        'fixed inset-y-0 left-0 w-64',
+        mobileOpen ? 'translate-x-0' : '-translate-x-full',
+        // Static sidebar at lg+
+        'lg:static lg:translate-x-0 lg:w-52 lg:flex-shrink-0 lg:sticky lg:top-0 2xl:w-60'
+      )}>
       {/* Logo */}
       <div class="px-4 py-5 border-b border-outline-gray-1 flex items-center justify-between">
         <div class="flex items-center gap-2.5">

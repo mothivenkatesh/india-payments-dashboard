@@ -60,7 +60,7 @@ export default function Growth() {
       </div>
 
       {/* Tab bar */}
-      <div class="flex gap-1 bg-white/[0.03] border border-outline-gray-2 rounded-xl p-1 w-fit">
+      <div class="flex gap-1 bg-surface-gray-1 border border-outline-gray-2 rounded-xl p-1 w-fit">
         {TABS.map(({ id, label, icon }) => (
           <button key={id} onClick={() => setTab(id)}
             class={clsx(
