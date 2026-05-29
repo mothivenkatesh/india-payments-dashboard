@@ -83,6 +83,9 @@ const USED_ICONS = [
   'user',
   'wifi',
   'zap',
+  // Solid sidebar variants (Heroicons solid)
+  'zap-solid', 'user-solid', 'share-2-solid', 'trending-up-solid',
+  'bar-chart-2-solid', 'shuffle-solid', 'award-solid', 'file-text-solid',
 ]
 
 /** @type {import('tailwindcss').Config} */

@@ -97,7 +97,7 @@ export default function NavBar({ onFeedbackClick, onTourClick, mobileOpen = fals
                     )}
                   >
                     <Icon
-                      name={icon}
+                      name={`${icon}-solid`}
                       size={15}
                       className={active ? 'text-ink-blue-2' : ''}
                     />
