@@ -1,5 +1,5 @@
 /** @jsxImportSource preact */
-import { useEffect, useRef, useState } from 'preact/hooks'
+import { useEffect, useLayoutEffect, useRef, useState } from 'preact/hooks'
 import { getEntry } from '../data/glossary'
 
 interface InfoChipProps {
@@ -9,15 +9,17 @@ interface InfoChipProps {
   text?: string
   /** Optional explicit headline — overrides the glossary entry's `term`. */
   label?: string
-  /** Show below or above the chip. Defaults to "auto" (picks based on viewport). */
-  position?: 'top' | 'bottom' | 'auto'
 }
+
+const TIP_W = 256
 
 /**
  * InfoChip — small "?" icon that surfaces a glossary definition on hover or click.
- * Click toggles a pinned tooltip; hover shows it transiently. Esc closes it.
+ * The tooltip is fixed-positioned from the button rect so it escapes any
+ * overflow-hidden ancestor (e.g. MetricTile) and clamps to the viewport.
+ * Click pins the tooltip and reveals the long explainer. Esc closes it.
  */
-export default function InfoChip({ term, text, label, position = 'auto' }: InfoChipProps) {
+export default function InfoChip({ term, text, label }: InfoChipProps) {
   const entry = getEntry(term)
   const headline = label ?? entry?.term ?? term
   const short = text ?? entry?.short ?? ''
@@ -25,18 +27,30 @@ export default function InfoChip({ term, text, label, position = 'auto' }: InfoC
 
   const [open, setOpen] = useState(false)
   const [hover, setHover] = useState(false)
-  const [placeBelow, setPlaceBelow] = useState(true)
+  const [pos, setPos] = useState<{ top: number; left: number; below: boolean } | null>(null)
   const btnRef = useRef<HTMLButtonElement>(null)
 
-  // Pick top vs bottom based on viewport room when opening
-  useEffect(() => {
-    if (!open && !hover) return
-    if (position === 'top') return setPlaceBelow(false)
-    if (position === 'bottom') return setPlaceBelow(true)
-    const rect = btnRef.current?.getBoundingClientRect()
-    if (!rect) return
-    setPlaceBelow(rect.top < 180 || rect.bottom + 180 < window.innerHeight)
-  }, [open, hover, position])
+  const visible = open || hover
+
+  // Compute a fixed position from the button rect, clamped horizontally to the viewport.
+  useLayoutEffect(() => {
+    if (!visible) return
+    const compute = () => {
+      const r = btnRef.current?.getBoundingClientRect()
+      if (!r) return
+      const below = r.bottom + 170 < window.innerHeight || r.top < 170
+      const left = Math.max(12, Math.min(window.innerWidth - TIP_W - 12, r.left + r.width / 2 - TIP_W / 2))
+      const top = below ? r.bottom + 6 : r.top - 6
+      setPos({ top, left, below })
+    }
+    compute()
+    window.addEventListener('scroll', compute, { capture: true })
+    window.addEventListener('resize', compute)
+    return () => {
+      window.removeEventListener('scroll', compute, { capture: true })
+      window.removeEventListener('resize', compute)
+    }
+  }, [visible])
 
   // Esc + click-outside to close
   useEffect(() => {
@@ -55,8 +69,6 @@ export default function InfoChip({ term, text, label, position = 'auto' }: InfoC
 
   if (!short) return null
 
-  const visible = open || hover
-
   return (
     <span class="relative inline-flex">
       <button
@@ -73,15 +85,24 @@ export default function InfoChip({ term, text, label, position = 'auto' }: InfoC
       >
         ?
       </button>
-      {visible && (
+      {visible && pos && (
         <span
           role="tooltip"
-          class={`absolute z-40 ${placeBelow ? 'top-full mt-1.5' : 'bottom-full mb-1.5'} left-1/2 -translate-x-1/2 w-64 max-w-[80vw] p-3 rounded-lg bg-surface-white border border-outline-gray-2 shadow-lg pointer-events-none`}
+          class="fixed z-50 p-3 rounded-lg bg-surface-white border border-outline-gray-2 shadow-lg pointer-events-none normal-case tracking-normal"
+          style={{
+            top: pos.below ? `${pos.top}px` : 'auto',
+            bottom: pos.below ? 'auto' : `${window.innerHeight - pos.top}px`,
+            left: `${pos.left}px`,
+            width: `${TIP_W}px`,
+            maxWidth: 'calc(100vw - 24px)',
+            textTransform: 'none',
+            letterSpacing: 'normal',
+          }}
         >
-          <span class="block text-2xs font-semibold uppercase tracking-widest text-ink-blue-2 mb-1">{headline}</span>
-          <span class="block text-xs text-ink-gray-8 leading-relaxed">{short}</span>
+          <span class="block text-2xs font-semibold text-ink-blue-2 mb-1" style={{ overflowWrap: 'anywhere' }}>{headline}</span>
+          <span class="block text-xs text-ink-gray-8 leading-relaxed" style={{ overflowWrap: 'anywhere' }}>{short}</span>
           {long && open && (
-            <span class="block text-2xs text-ink-gray-6 leading-relaxed mt-2 pt-2 border-t border-outline-gray-1">{long}</span>
+            <span class="block text-2xs text-ink-gray-6 leading-relaxed mt-2 pt-2 border-t border-outline-gray-1" style={{ overflowWrap: 'anywhere' }}>{long}</span>
           )}
           {long && !open && (
             <span class="block text-2xs text-ink-gray-5 mt-2 italic">Click for more.</span>
