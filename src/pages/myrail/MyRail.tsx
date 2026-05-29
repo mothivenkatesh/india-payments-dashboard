@@ -1,6 +1,7 @@
 /** @jsxImportSource preact */
 import { useState } from 'preact/hooks'
 import Icon from '../../components/Icon'
+import AppLogo from '../../components/AppLogo'
 import MonthPicker from '../../components/MonthPicker'
 import { useMyRail, type MyRailData } from '../../hooks/useMyRail'
 import { useUPITimeSeries } from '../../hooks/useUpiData'
@@ -220,9 +221,7 @@ export default function MyRail() {
       {hasData && data.month && (
         <div class="space-y-4">
           <div class="flex items-center gap-2">
-            <div class="w-6 h-6 rounded-md flex items-center justify-center text-2xs font-bold text-ink-gray-9 bg-surface-blue-2">
-              {data.company[0]?.toUpperCase()}
-            </div>
+            <AppLogo name={data.company} size={24} rounded="md" />
             <h2 class="text-sm font-semibold text-ink-gray-9">{data.company}</h2>
             <span class="text-2xs text-ink-gray-6">vs {MONTH_LABELS[data.month] ?? data.month} market</span>
             {!mktUPI && !mktCards && (

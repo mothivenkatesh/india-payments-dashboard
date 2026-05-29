@@ -1,11 +1,13 @@
 /** @jsxImportSource preact */
 import { useState } from 'preact/hooks'
 import clsx from 'clsx'
+import Icon from './Icon'
 
 /**
- * AppLogo — fetches an official company logo via Clearbit's free logo API,
- * with a graceful fallback to a colored initial-letter tile if the logo
- * doesn't load (unknown domain, network error, or 404).
+ * AppLogo — renders an official company logo via Google's S2 favicon API
+ * (Clearbit's free logo endpoint was sunset Dec 2024). Falls back to a
+ * neutral briefcase icon when the logo can't load. No first-letter dummy
+ * tile, so tables stay clean even for unknown names.
  *
  * Pass either a known `name` (UPI app, bank, data source) or an explicit
  * `domain` override.
@@ -36,6 +38,13 @@ const KNOWN_DOMAINS: Record<string, string> = {
   'PayU':          'payu.in',
   'CCAvenue':      'ccavenue.com',
   'BillDesk':      'billdesk.com',
+  'Pine Labs':     'pinelabs.com',
+  'PineLabs':      'pinelabs.com',
+  'Mswipe':        'mswipe.com',
+  'Easebuzz':      'easebuzz.in',
+  'Instamojo':     'instamojo.com',
+  'Stripe':        'stripe.com',
+  'Adyen':         'adyen.com',
 }
 
 // Indian bank canonical names → primary domain
@@ -144,25 +153,21 @@ export default function AppLogo({
 }: Props) {
   const [failed, setFailed] = useState(false)
   const resolved = resolveDomain(name, domain)
-  const logoUrl = resolved ? `https://logo.clearbit.com/${resolved}?size=128` : ''
+  // Google's S2 favicon endpoint — free, no auth, returns 128×128 PNG.
+  // Clearbit Logo API was sunset Dec 2024.
+  const logoUrl = resolved ? `https://www.google.com/s2/favicons?domain=${resolved}&sz=128` : ''
   const radiusClass = `rounded-${rounded}`
 
   if (failed || !logoUrl) {
-    const bg = color ?? '#6B7280'
+    // Neutral icon fallback — no first-letter dummy tile.
+    const tone = color ?? '#94A3B8'
     return (
       <div
-        class={clsx('flex items-center justify-center shrink-0 font-bold', radiusClass, className)}
-        style={{
-          width: size,
-          height: size,
-          background: `${bg}22`,
-          border: `1px solid ${bg}44`,
-          color: bg,
-          fontSize: Math.max(10, size * 0.45),
-        }}
+        class={clsx('flex items-center justify-center shrink-0 bg-surface-gray-1 border border-outline-gray-2', radiusClass, className)}
+        style={{ width: size, height: size, color: tone }}
         title={name}
       >
-        {name[0]?.toUpperCase() ?? '?'}
+        <Icon name="briefcase" size={Math.max(10, Math.round(size * 0.5))} />
       </div>
     )
   }

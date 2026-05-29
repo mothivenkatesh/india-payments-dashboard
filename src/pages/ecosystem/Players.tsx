@@ -97,6 +97,83 @@ export default function Players() {
             ))}
           </div>
 
+          {/* App Leaderboard */}
+          <div class="glass-card overflow-hidden">
+            <div class="px-5 py-4 border-b border-outline-gray-1 flex items-center justify-between">
+              <div>
+                <h2 class="text-sm font-medium text-ink-gray-9">UPI App Leaderboard</h2>
+                <p class="text-2xs text-ink-gray-5 mt-0.5">Ranked by latest-month volume · {app.latestLabel}</p>
+              </div>
+              <span class="text-2xs text-ink-gray-5">{app.latestRanked.length} apps</span>
+            </div>
+            <div class="overflow-x-auto">
+              <table class="w-full text-xs">
+                <thead>
+                  <tr class="border-b border-outline-gray-1">
+                    {['Rank','App','MoM','Volume','Value','Vol Share','Val Share',''].map(h => (
+                      <th key={h} class="text-left px-4 py-2.5 text-ink-gray-6 font-medium whitespace-nowrap">{h}</th>
+                    ))}
+                  </tr>
+                </thead>
+                <tbody>
+                  {app.latestRanked.map((r, i) => {
+                    const series = (app.appSeries[r.app] ?? []).filter(d => d.volume > 0)
+                    const last = series[series.length - 1]
+                    const prev = series[series.length - 2]
+                    const mom  = prev?.volume > 0 ? ((last.volume - prev.volume) / prev.volume) * 100 : null
+                    const isWinner = i === 0
+                    const isLast   = i === app.latestRanked.length - 1
+                    const isActive = selectedApp === r.app
+                    return (
+                      <tr key={r.app}
+                        onClick={() => setSelectedApp(r.app)}
+                        class={clsx(
+                          'border-b border-outline-gray-1 last:border-0 cursor-pointer transition-colors',
+                          isActive ? 'bg-surface-blue-1' :
+                          isWinner ? 'bg-surface-blue-1/40' :
+                          'hover:bg-surface-gray-1'
+                        )}>
+                        <td class="px-4 py-3 w-10">
+                          <span class={clsx('text-sm font-bold tabular-nums',
+                            isWinner ? 'text-ink-blue-2' : isLast ? 'text-ink-gray-5' : 'text-ink-gray-6')}>
+                            {r.rank}
+                          </span>
+                        </td>
+                        <td class="px-4 py-3">
+                          <div class="flex items-center gap-2.5 min-w-0">
+                            <AppLogo name={r.app} size={22} rounded="md" color={r.color} />
+                            <span class={clsx('text-sm font-medium', isWinner ? 'text-ink-gray-9' : 'text-ink-gray-8')}>{r.app}</span>
+                            {isWinner && (
+                              <span class="text-2xs px-1.5 py-0.5 rounded border border-outline-green-1 bg-surface-green-1 text-ink-green-2 font-semibold">LEADING</span>
+                            )}
+                          </div>
+                        </td>
+                        <td class="px-4 py-3 w-20">
+                          {mom !== null ? (
+                            <span class={clsx('text-xs font-medium tabular-nums', mom >= 0 ? 'stat-positive' : 'stat-negative')}>
+                              {mom >= 0 ? '+' : ''}{mom.toFixed(1)}%
+                            </span>
+                          ) : (
+                            <span class="text-2xs text-ink-gray-5">—</span>
+                          )}
+                        </td>
+                        <td class="px-4 py-3 text-ink-gray-9 tabular-nums">{fmt(r.volume, 'vol')}</td>
+                        <td class="px-4 py-3 text-ink-gray-9 tabular-nums">{fmt(r.value, 'val')}</td>
+                        <td class="px-4 py-3 tabular-nums">
+                          <span class="text-sm font-semibold" style={{ color: r.color }}>{r.volShare.toFixed(1)}%</span>
+                        </td>
+                        <td class="px-4 py-3 text-ink-gray-7 tabular-nums">{r.valShare.toFixed(1)}%</td>
+                        <td class="px-4 py-3 w-12">
+                          <Icon name="external-link" size={13} className="text-ink-gray-4" />
+                        </td>
+                      </tr>
+                    )
+                  })}
+                </tbody>
+              </table>
+            </div>
+          </div>
+
           {/* App profile */}
           <div class="glass-card p-5">
             <div class="flex items-center gap-4 mb-5">

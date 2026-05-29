@@ -6,6 +6,7 @@ import MetricTile from '../../components/MetricTile'
 import FreshnessPill from '../../components/FreshnessPill'
 import LineChart from '../../components/charts/LineChart'
 import Icon from '../../components/Icon'
+import AppLogo from '../../components/AppLogo'
 import { percentileRank } from '../../utils/anomaly'
 import MonthPicker from '../../components/MonthPicker'
 import type { RBIMonthly } from '../../api/rbiDaily'
@@ -226,9 +227,7 @@ export default function Pulse() {
         <div class="glass-card p-4 border border-outline-blue-1 bg-surface-blue-1">
           <div class="flex items-center justify-between">
             <div class="flex items-center gap-3">
-              <div class="w-7 h-7 rounded-lg flex items-center justify-center text-xs font-bold text-ink-gray-9 bg-surface-blue-2">
-                {myRail.company[0]?.toUpperCase()}
-              </div>
+              <AppLogo name={myRail.company} size={28} rounded="lg" />
               <div>
                 <p class="text-sm font-medium text-ink-gray-9">{myRail.company} vs Market</p>
                 <p class="text-2xs text-ink-gray-6">Your numbers overlaid on this month's data</p>

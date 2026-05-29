@@ -1,6 +1,7 @@
 /** @jsxImportSource preact */
 import { useState } from 'preact/hooks'
 import Icon from '../../components/Icon'
+import AppLogo from '../../components/AppLogo'
 import FreshnessPill from '../../components/FreshnessPill'
 import BarChart from '../../components/charts/BarChart'
 import DoughnutChart from '../../components/charts/DoughnutChart'
@@ -133,10 +134,7 @@ export default function MarketHealth() {
           </div>
           {leader && (
             <div class="flex items-center gap-3 p-3 rounded-xl bg-surface-gray-1 border border-outline-gray-1">
-              <div class="w-8 h-8 rounded-lg flex items-center justify-center text-sm font-bold shrink-0"
-                style={{ background:`${leader.color}22`, border:`1px solid ${leader.color}44`, color:leader.color }}>
-                {leader.app[0]}
-              </div>
+              <AppLogo name={leader.app} size={32} rounded="lg" color={leader.color} />
               <div class="flex-1 min-w-0">
                 <p class="text-xs font-semibold text-ink-gray-9 truncate">{leader.app}</p>
                 <p class="text-2xs text-ink-gray-7">{fmtVol(leader.volume)} txns · {fmtVal(leader.value)}</p>
@@ -232,18 +230,20 @@ export default function MarketHealth() {
           <div class="glass-card p-5">
             <h2 class="text-sm font-medium text-ink-gray-9 mb-3">Top Banks by CC Spend</h2>
             {cardsLoading ? (
-              <div class="space-y-2">{[...Array(5)].map((_,i)=><div key={i} class="h-8 bg-surface-gray-1 rounded animate-pulse"/>)}</div>
+              <div class="space-y-2">{[...Array(5)].map((_,i)=><div key={i} class="h-10 bg-surface-gray-1 rounded animate-pulse"/>)}</div>
             ) : (
-              <div class="space-y-2.5">
+              <div class="space-y-2">
                 {top5Banks.map((b,i) => {
                   const maxVal = top5Banks[0]?.totalCCSpendVal ?? 1
                   return (
                     <div key={b.bankName} class="space-y-1">
-                      <div class="flex justify-between text-xs">
-                        <span class="text-ink-gray-8 truncate mr-2">#{i+1} {b.bankName}</span>
+                      <div class="flex items-center gap-2 text-xs">
+                        <span class="text-ink-gray-5 tabular-nums w-4 shrink-0">{i+1}</span>
+                        <AppLogo name={b.bankName} size={18} rounded="sm" />
+                        <span class="text-ink-gray-8 truncate flex-1 min-w-0" title={b.bankName}>{b.bankName}</span>
                         <span class="text-ink-gray-7 shrink-0 tabular-nums">{fmtCard(b.totalCCSpendVal)}</span>
                       </div>
-                      <div class="h-1 bg-surface-gray-1 rounded-full overflow-hidden">
+                      <div class="h-1 bg-surface-gray-1 rounded-full overflow-hidden ml-9">
                         <div class="h-full rounded-full" style={{width:`${(b.totalCCSpendVal/maxVal)*100}%`, background:'var(--ink-blue-2)'}}/>
                       </div>
                     </div>
