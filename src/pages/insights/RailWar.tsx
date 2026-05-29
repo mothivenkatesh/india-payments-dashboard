@@ -196,7 +196,7 @@ export default function RailWar() {
         </div>
 
         {isLoading ? (
-          <div class="h-72 bg-surface-gray-1 rounded animate-pulse" />
+          <div class="h-[320px] bg-surface-gray-1 rounded animate-pulse" />
         ) : (
           <LineChart
             labels={labels}

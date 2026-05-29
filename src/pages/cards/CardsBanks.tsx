@@ -66,7 +66,7 @@ export default function CardsBanks() {
               {catFilter !== 'All' && <span class="text-ink-gray-6 font-normal ml-1.5">· {catFilter}</span>}
             </h2>
             {isLoading ? (
-              <div class="h-52 bg-surface-gray-1 rounded animate-pulse" />
+              <div class="h-[260px] bg-surface-gray-1 rounded animate-pulse" />
             ) : (
               <BarChart
                 labels={top10.map(b => b.bankName)}

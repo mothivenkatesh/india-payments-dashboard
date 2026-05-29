@@ -159,7 +159,7 @@ export default function CardsOverview() {
         <h2 class="text-sm font-medium text-ink-gray-9 mb-1">Credit vs Debit Spend Trend</h2>
         <p class="text-xs text-ink-gray-6 mb-4">Total monthly spend (₹ Lakh Cr)</p>
         {isLoading ? (
-          <div class="h-48 bg-surface-gray-1 rounded animate-pulse" />
+          <div class="h-[200px] bg-surface-gray-1 rounded animate-pulse" />
         ) : (
           <LineChart
             labels={trend24.map(d => d.label)}

@@ -318,7 +318,7 @@ export default function Players() {
                   Top Banks by CC Spend
                   {catFilter !== 'All' && <span class="text-ink-gray-6 font-normal ml-1.5">· {catFilter}</span>}
                 </h2>
-                {banksLoading ? <div class="h-52 bg-surface-gray-1 rounded animate-pulse" /> : (
+                {banksLoading ? <div class="h-[260px] bg-surface-gray-1 rounded animate-pulse" /> : (
                   <BarChart
                     labels={top10Banks.map(b=>b.bankName)}
                     datasets={[{

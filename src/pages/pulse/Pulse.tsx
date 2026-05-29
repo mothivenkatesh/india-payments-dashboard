@@ -434,7 +434,7 @@ export default function Pulse() {
         </div>
         <div class="mt-4">
           {isLoading ? (
-            <div class="h-56 bg-surface-gray-1 rounded animate-pulse" />
+            <div class="h-[230px] bg-surface-gray-1 rounded animate-pulse" />
           ) : (
             <LineChart
               labels={chartMonths.map(m => m.label)}
