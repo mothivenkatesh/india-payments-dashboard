@@ -49,7 +49,7 @@ export default function NavBar({ onFeedbackClick, onTourClick, mobileOpen = fals
         'fixed inset-y-0 left-0 w-64',
         mobileOpen ? 'translate-x-0' : '-translate-x-full',
         // Static sidebar at lg+
-        'lg:static lg:translate-x-0 lg:w-52 lg:flex-shrink-0 lg:sticky lg:top-0 2xl:w-60'
+        'lg:static lg:translate-x-0 lg:w-56 lg:flex-shrink-0 lg:sticky lg:top-0'
       )}>
       {/* Logo */}
       <div class="px-4 py-5 border-b border-outline-gray-1 flex items-center justify-between">
