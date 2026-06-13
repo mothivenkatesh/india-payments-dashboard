@@ -80,8 +80,7 @@ export default function InfoChip({ term, text, label }: InfoChipProps) {
         onFocus={() => setHover(true)}
         onBlur={() => setHover(false)}
         aria-label={`What is ${headline}?`}
-        class="relative inline-flex items-center justify-center w-3.5 h-3.5 rounded-full bg-surface-gray-2 border border-outline-gray-2 text-ink-gray-6 hover:text-ink-gray-9 hover:bg-surface-gray-3 transition-colors cursor-help align-middle before:absolute before:content-[''] before:-inset-[5px]"
-        style={{ fontSize: '9px', lineHeight: '1', fontWeight: 700 }}
+        class="relative inline-flex items-center justify-center w-3.5 h-3.5 rounded-full bg-surface-gray-2 border border-outline-gray-2 text-ink-gray-6 hover:text-ink-gray-9 hover:bg-surface-gray-3 transition-colors cursor-help align-middle text-[9px] leading-none font-bold before:absolute before:content-[''] before:-inset-[5px]"
       >
         ?
       </button>
@@ -89,21 +88,19 @@ export default function InfoChip({ term, text, label }: InfoChipProps) {
         <span
           role="tooltip"
           class="fixed z-50 p-3 rounded-lg bg-surface-white border border-outline-gray-2 shadow-lg pointer-events-none normal-case tracking-normal whitespace-normal"
+          /* one-ui-allow: tooltip position measured from the trigger rect (live DOM) */
           style={{
             top: pos.below ? `${pos.top}px` : 'auto',
             bottom: pos.below ? 'auto' : `${window.innerHeight - pos.top}px`,
             left: `${pos.left}px`,
             width: `${TIP_W}px`,
             maxWidth: 'calc(100vw - 24px)',
-            textTransform: 'none',
-            letterSpacing: 'normal',
-            whiteSpace: 'normal',
           }}
         >
-          <span class="block text-2xs font-semibold text-ink-blue-2 mb-1" style={{ overflowWrap: 'anywhere' }}>{headline}</span>
-          <span class="block text-xs text-ink-gray-8 leading-relaxed" style={{ overflowWrap: 'anywhere' }}>{short}</span>
+          <span class="block text-2xs font-semibold text-ink-blue-2 mb-1 wrap-anywhere">{headline}</span>
+          <span class="block text-xs text-ink-gray-8 leading-relaxed wrap-anywhere">{short}</span>
           {long && (
-            <span class="block text-2xs text-ink-gray-6 leading-relaxed mt-2" style={{ overflowWrap: 'anywhere' }}>{long}</span>
+            <span class="block text-2xs text-ink-gray-6 leading-relaxed mt-2 wrap-anywhere">{long}</span>
           )}
         </span>
       )}

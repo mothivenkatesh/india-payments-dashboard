@@ -4,6 +4,8 @@ import Icon from '../../components/Icon'
 import LineChart from '../../components/charts/LineChart'
 import DoughnutChart from '../../components/charts/DoughnutChart'
 import ErrorState from '../../components/ErrorState'
+import SwatchDot from '../../components/SwatchDot'
+import MeterBar from '../../components/MeterBar'
 import { useCardsTimeSeries, useCardsBankLatest } from '../../hooks/useCardsData'
 import clsx from 'clsx'
 
@@ -83,7 +85,7 @@ export default function CardsOverview() {
                 return (
                   <div key={label} class="flex items-center justify-between text-xs">
                     <span class="flex items-center gap-1.5 text-ink-gray-8">
-                      <span class="w-2 h-2 rounded-sm" style={{ background: color }} />
+                      <SwatchDot color={color} square />
                       {label}
                     </span>
                     <span class="text-ink-gray-7 tabular-nums">
@@ -115,7 +117,7 @@ export default function CardsOverview() {
                 return (
                   <div key={label} class="flex items-center justify-between text-xs">
                     <span class="flex items-center gap-1.5 text-ink-gray-8">
-                      <span class="w-2 h-2 rounded-sm" style={{ background: color }} />
+                      <SwatchDot color={color} square />
                       {label}
                     </span>
                     <span class="text-ink-gray-7 tabular-nums">
@@ -143,7 +145,7 @@ export default function CardsOverview() {
                         <span class="text-ink-gray-7 shrink-0 tabular-nums">{fmt(b.totalCCSpendVal)}</span>
                       </div>
                       <div class="h-1 bg-surface-gray-1 rounded-full overflow-hidden">
-                        <div class="h-full rounded-full transition-all" style={{ background: 'var(--ink-blue-2)', width: `${(b.totalCCSpendVal / maxVal) * 100}%` }} />
+                        <MeterBar pct={(b.totalCCSpendVal / maxVal) * 100} />
                       </div>
                     </div>
                   )

@@ -6,6 +6,7 @@ import MonthPicker from '../../components/MonthPicker'
 import { useMyRail, type MyRailData } from '../../hooks/useMyRail'
 import { useUPITimeSeries } from '../../hooks/useUpiData'
 import { useCardsTimeSeries } from '../../hooks/useCardsData'
+import MeterBar from '../../components/MeterBar'
 import clsx from 'clsx'
 
 const fmtShare = (v: number) => v > 0 ? `${v.toFixed(2)}%` : '—'
@@ -39,10 +40,10 @@ function ShareBar({ mine, total, label, color }: { mine: number; total: number; 
     <div class="space-y-1.5">
       <div class="flex justify-between text-xs">
         <span class="text-ink-gray-7">{label}</span>
-        <span class="font-semibold" style={{ color }}>{fmtShare(pct)} of market</span>
+        <span class="font-semibold" /* one-ui-allow: share label colored by the rail */ style={{ color }}>{fmtShare(pct)} of market</span>
       </div>
       <div class="h-2 bg-surface-gray-1 rounded-full overflow-hidden flex">
-        <div class="h-full rounded-full transition-all" style={{ width: `${Math.min(pct, 100)}%`, background: color }} />
+        <MeterBar pct={pct} color={color} />
       </div>
       <div class="flex justify-between text-2xs text-ink-gray-5">
         <span>You: {fmtShare(pct)}</span>

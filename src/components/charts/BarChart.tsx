@@ -57,7 +57,7 @@ export default function BarChart({ labels, datasets, height = 220, horizontal = 
   }, [JSON.stringify(labels), JSON.stringify(datasets.map(d => d.data)), stacked])
 
   return (
-    <div style={{ position: 'relative', height: `${height}px`, width: '100%' }}>
+    <div class="relative w-full" /* one-ui-allow: chart height from the height prop */ style={{ height: `${height}px` }}>
       <canvas
         ref={ref}
         role="img"

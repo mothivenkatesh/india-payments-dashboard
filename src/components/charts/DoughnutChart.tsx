@@ -54,7 +54,7 @@ export default function DoughnutChart({ labels, data, colors, height = 180, tool
   }, [JSON.stringify(data), JSON.stringify(labels)])
 
   return (
-    <div style={{ position: 'relative', height: `${height}px`, width: '100%' }}>
+    <div class="relative w-full" /* one-ui-allow: chart height from the height prop */ style={{ height: `${height}px` }}>
       <canvas
         ref={ref}
         role="img"

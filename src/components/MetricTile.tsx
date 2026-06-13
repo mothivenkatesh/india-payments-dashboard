@@ -2,6 +2,7 @@
 import Icon from './Icon'
 import InfoChip from './InfoChip'
 import clsx from 'clsx'
+import MeterBar from './MeterBar'
 
 interface MetricTileProps {
   label: string
@@ -82,12 +83,9 @@ export default function MetricTile({
                     </span>
                   </div>
                   <div class="h-1 rounded-full bg-surface-gray-2 overflow-hidden">
-                    <div
-                      class="h-full rounded-full transition-all"
-                      style={{
-                        width: `${pctRank}%`,
-                        background: pctRank >= 90 ? 'var(--ink-green-2)' : pctRank >= 50 ? 'var(--ink-blue-2)' : 'var(--ink-red-3)'
-                      }}
+                    <MeterBar
+                      pct={pctRank}
+                      color={pctRank >= 90 ? 'var(--ink-green-2)' : pctRank >= 50 ? 'var(--ink-blue-2)' : 'var(--ink-red-3)'}
                     />
                   </div>
                 </div>

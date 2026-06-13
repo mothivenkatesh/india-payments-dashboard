@@ -90,6 +90,7 @@ export default function Players() {
               <button key={r.app} onClick={() => setSelectedApp(r.app)}
                 class={clsx('flex items-center gap-1.5 pl-1 pr-3 py-1 rounded-full text-xs font-medium transition-all border',
                   selectedApp === r.app ? 'text-ink-gray-9' : 'text-ink-gray-7 border-outline-gray-2 hover:border-outline-gray-3')}
+                /* one-ui-allow: per-app brand tint computed from the data color */
                 style={selectedApp === r.app ? { background:`${r.color}22`, borderColor:`${r.color}66` } : {}}>
                 <AppLogo name={r.app} size={20} rounded="full" color={r.color} />
                 #{r.rank} {r.app}
@@ -184,7 +185,7 @@ export default function Players() {
               </div>
               {rankRow && (
                 <div class="text-right shrink-0">
-                  <p class="text-3xl font-bold" style={{ color }}>#{rankRow.rank}</p>
+                  <p class="text-3xl font-bold" /* one-ui-allow: rank colored by the app brand */ style={{ color }}>#{rankRow.rank}</p>
                   <p class="text-xs text-ink-gray-6">by volume</p>
                 </div>
               )}
