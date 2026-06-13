@@ -30,7 +30,7 @@ export default function CardsBanks() {
     <div class="space-y-6 max-w-[1800px] mx-auto">
       <div class="flex items-center justify-between">
         <div>
-          <h1 class="text-xl font-semibold text-ink-gray-9">Bank Deep Dive</h1>
+          <h1 class="view-h1 text-ink-gray-9">Bank Deep Dive</h1>
           <p class="text-xs text-ink-gray-6 mt-0.5">
             {latestDate ? `Latest: ${latestDate}` : 'Loading…'} · 85 banks · RBI ATM/POS statistics
           </p>

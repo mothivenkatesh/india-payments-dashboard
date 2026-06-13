@@ -55,7 +55,7 @@ export default function Growth() {
   return (
     <div class="space-y-6 max-w-[1800px] mx-auto">
       <div>
-        <h1 class="text-xl font-semibold text-ink-gray-9">Growth Signals</h1>
+        <h1 class="view-h1 text-ink-gray-9">Growth Signals</h1>
         <p class="text-xs text-ink-gray-6 mt-0.5">What is accelerating, what is slowing</p>
       </div>
 

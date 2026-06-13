@@ -150,6 +150,14 @@
 
 @layer components {
   /* One UI canonical component layer — must match one-ui/tokens/one-ui.components.css */
+  /* Canonical page title - matches Agentic .page-hero h1 and GTMstack .view-h1 */
+  .view-h1 {
+    font-size: 28px;
+    font-weight: 700;
+    letter-spacing: 0;
+    line-height: 1.15;
+    margin: 0;
+  }
   .glass-card {
     background: var(--ds-bg-card);
     border: 1px solid var(--ds-border-subtle);

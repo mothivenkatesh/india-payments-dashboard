@@ -52,7 +52,7 @@ export default function MarketHealth() {
       {/* Header */}
       <div class="flex items-center justify-between">
         <div>
-          <h1 class="text-xl font-semibold text-ink-gray-9">Market Health</h1>
+          <h1 class="view-h1 text-ink-gray-9">Market Health</h1>
           <p class="text-xs text-ink-gray-6 mt-0.5">State of Indian digital payments — UPI + Cards, one view</p>
         </div>
         <FreshnessPill dataDate={freshDate} lagDays={lag} />

@@ -43,7 +43,7 @@ export default function CardsOverview() {
       {/* Header */}
       <div class="flex items-center justify-between">
         <div>
-          <h1 class="text-xl font-semibold text-ink-gray-9">Cards Ecosystem</h1>
+          <h1 class="view-h1 text-ink-gray-9">Cards Ecosystem</h1>
           <p class="text-xs text-ink-gray-6 mt-0.5">
             {latest?.label ?? 'Loading…'} · RBI Bank-wise data via India Data Portal
           </p>

@@ -43,7 +43,7 @@ export default function UPIOverview() {
       {/* Header */}
       <div class="flex items-center justify-between">
         <div>
-          <h1 class="text-xl font-semibold text-ink-gray-9">UPI Ecosystem</h1>
+          <h1 class="view-h1 text-ink-gray-9">UPI Ecosystem</h1>
           <p class="text-xs text-ink-gray-6 mt-0.5">Latest: {app.latestLabel}</p>
         </div>
         <span class={clsx('pill flex items-center gap-1', isLive ? 'pill-green' : 'bg-surface-gray-2 text-ink-gray-6 border border-outline-gray-2')}>

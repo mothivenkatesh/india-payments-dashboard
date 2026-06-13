@@ -130,7 +130,7 @@ export default function RailWar() {
           <div class="text-2xs font-semibold tracking-wide text-ink-gray-5 mb-1">
             Rail War · {slice.length} months
           </div>
-          <h1 class="text-xl font-semibold text-ink-gray-9 leading-snug">
+          <h1 class="view-h1 text-ink-gray-9 leading-snug">
             {head.lead}
           </h1>
           {head.tail && (

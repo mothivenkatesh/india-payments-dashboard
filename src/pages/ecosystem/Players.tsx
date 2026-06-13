@@ -63,7 +63,7 @@ export default function Players() {
   return (
     <div class="space-y-6 max-w-[1800px] mx-auto">
       <div>
-        <h1 class="text-xl font-semibold text-ink-gray-9">Players</h1>
+        <h1 class="view-h1 text-ink-gray-9">Players</h1>
         <p class="text-xs text-ink-gray-6 mt-0.5">Who is winning — UPI apps and card-issuing banks</p>
       </div>
 

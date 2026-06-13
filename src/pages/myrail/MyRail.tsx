@@ -156,7 +156,7 @@ export default function MyRail() {
     <div class="space-y-6 max-w-4xl">
       {/* Header */}
       <div>
-        <h1 class="text-xl font-semibold text-ink-gray-9">My Rail</h1>
+        <h1 class="view-h1 text-ink-gray-9">My Rail</h1>
         <p class="text-xs text-ink-gray-6 mt-0.5">
           Your numbers. Market context. Know if you are gaining or losing share.
         </p>

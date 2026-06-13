@@ -44,7 +44,7 @@ export default function UPIApps() {
   return (
     <div class="space-y-6 max-w-[1800px] mx-auto">
       <div>
-        <h1 class="text-xl font-semibold text-ink-gray-9">App Deep Dive</h1>
+        <h1 class="view-h1 text-ink-gray-9">App Deep Dive</h1>
         <p class="text-xs text-ink-gray-6 mt-0.5">Full trend, growth metrics, and monthly table per app</p>
       </div>
 

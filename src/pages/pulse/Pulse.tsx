@@ -239,7 +239,7 @@ export default function Pulse() {
       {/* Header */}
       <div class="flex items-center justify-between gap-4">
         <div>
-          <h1 class="text-xl font-semibold text-ink-gray-9">Pulse</h1>
+          <h1 class="view-h1 text-ink-gray-9">Pulse</h1>
           <p class="text-xs text-ink-gray-6 mt-0.5">India payments market. What it means for Cashfree.</p>
         </div>
         <div class="flex items-center gap-3 shrink-0">

@@ -75,7 +75,7 @@ export default function Data() {
       <div class="flex items-start justify-between gap-4">
         <div>
           <div class="text-2xs font-semibold tracking-wide text-ink-gray-5 mb-1">Data</div>
-          <h1 class="text-xl font-semibold text-ink-gray-9 leading-snug">Browse the raw monthly data</h1>
+          <h1 class="view-h1 text-ink-gray-9 leading-snug">Browse the raw monthly data</h1>
           <p class="text-xs text-ink-gray-6 mt-1">
             All rails. Source-attributed per row.
             {latest && <span class="ml-1">Latest: <span class="text-ink-gray-8 font-medium">{latest.label}</span>.</span>}

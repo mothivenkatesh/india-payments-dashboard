@@ -29,7 +29,7 @@ export default function UPITrends() {
   return (
     <div class="space-y-6 max-w-[1800px] mx-auto">
       <div>
-        <h1 class="text-xl font-semibold text-ink-gray-9">UPI Trends Explorer</h1>
+        <h1 class="view-h1 text-ink-gray-9">UPI Trends Explorer</h1>
         <p class="text-xs text-ink-gray-6 mt-0.5">Compare up to 5 apps over time</p>
       </div>
 

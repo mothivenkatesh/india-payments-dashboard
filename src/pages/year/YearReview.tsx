@@ -133,7 +133,7 @@ export default function YearReview() {
       <div class="flex items-start justify-between gap-4">
         <div>
           <div class="text-2xs font-semibold tracking-wide text-ink-gray-5 mb-1">Year review</div>
-          <h1 class="text-xl font-semibold text-ink-gray-9 leading-snug">{selectedYear} in India payments</h1>
+          <h1 class="view-h1 text-ink-gray-9 leading-snug">{selectedYear} in India payments</h1>
           <p class="text-xs text-ink-gray-6 mt-1">The year-on-year picture across UPI, cards, NACH, and BBPS.</p>
         </div>
         <div class="flex items-center gap-1 bg-surface-gray-1 border border-outline-gray-2 rounded-lg p-0.5 shrink-0">
