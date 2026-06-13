@@ -170,6 +170,7 @@ export default function AppLogo({
     return (
       <div
         class={clsx('flex items-center justify-center shrink-0 bg-surface-gray-1 border border-outline-gray-2', radiusClass, className)}
+        /* one-ui-allow: logo box size from prop, fallback tone from data */
         style={{ width: size, height: size, color: tone }}
         title={name}
       >
@@ -187,6 +188,7 @@ export default function AppLogo({
       width={size}
       height={size}
       class={clsx('shrink-0 bg-white object-contain border border-outline-gray-1', radiusClass, className)}
+      /* one-ui-allow: logo dimensions and padding scale with the size prop */
       style={{ width: size, height: size, padding: Math.max(1, size * 0.06) }}
       onError={setFailed}
       loading="lazy"

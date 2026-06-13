@@ -35,7 +35,7 @@ export default function Sparkline({ data, color, width = 80, height = 28 }: Spar
   const trend = data[data.length - 1] > data[0]
 
   return (
-    <svg width={width} height={height} viewBox={`0 0 ${width} ${height}`} style={{ display: 'block', overflow: 'visible' }}>
+    <svg width={width} height={height} viewBox={`0 0 ${width} ${height}`} class="block overflow-visible">
       <defs>
         <linearGradient id={gradId} x1="0" y1="0" x2="0" y2="1">
           <stop offset="0%" stopColor={`rgba(${r},${g},${b},0.35)`} />

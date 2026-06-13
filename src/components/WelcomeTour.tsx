@@ -120,8 +120,7 @@ export default function WelcomeTour({ open, onClose }: WelcomeTourProps) {
   // ESC closes, body scroll lock while open
   useEffect(() => {
     if (!open) return
-    const prev = document.body.style.overflow
-    document.body.style.overflow = 'hidden'
+    document.body.classList.add('modal-open')
     const onKey = (e: KeyboardEvent) => {
       if (e.key === 'Escape') onClose()
       if (e.key === 'ArrowRight') setIdx(i => Math.min(STEPS.length - 1, i + 1))
@@ -129,7 +128,7 @@ export default function WelcomeTour({ open, onClose }: WelcomeTourProps) {
     }
     window.addEventListener('keydown', onKey)
     return () => {
-      document.body.style.overflow = prev
+      document.body.classList.remove('modal-open')
       window.removeEventListener('keydown', onKey)
     }
   }, [open, onClose])
@@ -184,6 +183,7 @@ export default function WelcomeTour({ open, onClose }: WelcomeTourProps) {
         <div
           aria-hidden="true"
           onClick={onClose}
+          /* one-ui-allow: spotlight box measured from the target rect (live DOM) */
           style={{
             position: 'fixed',
             top: `${rect.top - 6}px`,
@@ -208,6 +208,7 @@ export default function WelcomeTour({ open, onClose }: WelcomeTourProps) {
       {/* Tooltip card */}
       <div
         class="relative"
+        /* one-ui-allow: tooltip position computed from the target rect / viewport */
         style={
           hasTarget
             ? { position: 'fixed' as const, width: `${TIP_W}px`, ...tipStyle }
@@ -218,6 +219,7 @@ export default function WelcomeTour({ open, onClose }: WelcomeTourProps) {
         {hasTarget && (
           <span
             aria-hidden="true"
+            /* one-ui-allow: arrow offset depends on the computed placement side */
             style={{
               position: 'absolute',
               ...(arrowSide === 'top'    ? { top: '-6px',    left: '50%',   transform: 'translateX(-50%) rotate(45deg)' } : {}),

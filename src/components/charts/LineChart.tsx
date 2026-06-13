@@ -170,7 +170,7 @@ export default function LineChart({ labels, datasets, height = 200, tickFormat, 
   }, [JSON.stringify(labels), JSON.stringify(datasets.map(d => d.data))])
 
   return (
-    <div style={{ position: 'relative', height: `${height}px`, width: '100%' }}>
+    <div class="relative w-full" /* one-ui-allow: chart height from the height prop */ style={{ height: `${height}px` }}>
       <canvas
         ref={ref}
         role="img"

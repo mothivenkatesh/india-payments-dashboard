@@ -9,6 +9,8 @@ import LineChart from '../../components/charts/LineChart'
 import { useUPIAppData, useUPITimeSeries } from '../../hooks/useUpiData'
 import { useCardsTimeSeries, useCardsBankLatest } from '../../hooks/useCardsData'
 import { APP_COLORS } from '../../data/upiAppData'
+import SwatchDot from '../../components/SwatchDot'
+import MeterBar from '../../components/MeterBar'
 import clsx from 'clsx'
 
 const fmtVol = (v: number) => v >= 1000 ? `${(v/1000).toFixed(1)}B` : `${v.toFixed(0)}M`
@@ -172,7 +174,7 @@ export default function MarketHealth() {
             {top5.map(r => (
               <div key={r.app} class="flex items-center justify-between text-xs">
                 <span class="flex items-center gap-1.5 text-ink-gray-8">
-                  <span class="w-2 h-2 rounded-sm shrink-0" style={{ background:r.color }} />
+                  <SwatchDot color={r.color} square />
                   {r.app}
                 </span>
                 <span class="text-ink-gray-7 tabular-nums">{r.volShare.toFixed(1)}%</span>
@@ -198,7 +200,7 @@ export default function MarketHealth() {
                 const total = cardLatest.ccPosVal+cardLatest.ccOnlineVal+cardLatest.ccAtmVal
                 return (
                   <div key={l} class="flex items-center justify-between text-xs">
-                    <span class="flex items-center gap-1.5 text-ink-gray-8"><span class="w-2 h-2 rounded-sm" style={{background:c}}/>{l}</span>
+                    <span class="flex items-center gap-1.5 text-ink-gray-8"><SwatchDot color={c} square />{l}</span>
                     <span class="text-ink-gray-7 tabular-nums">{total>0?`${((v/total)*100).toFixed(1)}%`:'—'}</span>
                   </div>
                 )
@@ -219,7 +221,7 @@ export default function MarketHealth() {
                 const total = cardLatest.dcPosVal+cardLatest.dcOnlineVal+cardLatest.dcAtmVal
                 return (
                   <div key={l} class="flex items-center justify-between text-xs">
-                    <span class="flex items-center gap-1.5 text-ink-gray-8"><span class="w-2 h-2 rounded-sm" style={{background:c}}/>{l}</span>
+                    <span class="flex items-center gap-1.5 text-ink-gray-8"><SwatchDot color={c} square />{l}</span>
                     <span class="text-ink-gray-7 tabular-nums">{total>0?`${((v/total)*100).toFixed(1)}%`:'—'}</span>
                   </div>
                 )
@@ -244,7 +246,7 @@ export default function MarketHealth() {
                         <span class="text-ink-gray-7 shrink-0 tabular-nums">{fmtCard(b.totalCCSpendVal)}</span>
                       </div>
                       <div class="h-1 bg-surface-gray-1 rounded-full overflow-hidden ml-9">
-                        <div class="h-full rounded-full" style={{width:`${(b.totalCCSpendVal/maxVal)*100}%`, background:'var(--ink-blue-2)'}}/>
+                        <MeterBar pct={(b.totalCCSpendVal/maxVal)*100} />
                       </div>
                     </div>
                   )

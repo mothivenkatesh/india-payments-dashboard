@@ -3,6 +3,7 @@ import { useState, useMemo } from 'preact/hooks'
 import { useRBIMonthly } from '../../hooks/useRBIData'
 import LineChart from '../../components/charts/LineChart'
 import InfoChip from '../../components/InfoChip'
+import SwatchDot from '../../components/SwatchDot'
 import type { RBIMonthly } from '../../api/rbiDaily'
 
 // ── Rail definitions ────────────────────────────────────────────────────────
@@ -180,7 +181,7 @@ export default function RailWar() {
                 }`}
                 title={noData ? 'No data in this period' : undefined}
               >
-                <span class="w-2 h-2 rounded-full shrink-0" style={{ background: isStory ? rail.color : DIM_COLOR }} />
+                <SwatchDot color={isStory ? rail.color : DIM_COLOR} />
                 <span class={`text-2xs font-medium ${isStory ? 'text-ink-gray-8' : 'text-ink-gray-6'}`}>
                   {rail.label}
                 </span>
@@ -272,7 +273,7 @@ export default function RailWar() {
 
                   {/* Color dot + Rail name */}
                   <div class="flex items-center gap-2.5 flex-1 min-w-0">
-                    <span class="w-3 h-3 rounded-full shrink-0" style={{ background: rail.color }} />
+                    <SwatchDot color={rail.color} size={12} />
                     <span class={`text-sm font-medium ${isWinner ? 'text-ink-gray-9' : 'text-ink-gray-8'}`}>
                       {rail.label}
                     </span>

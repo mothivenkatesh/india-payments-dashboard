@@ -24,13 +24,12 @@ export default function FeedbackModal({ open, onClose }: FeedbackModalProps) {
   // Focus + ESC + body-scroll-lock
   useEffect(() => {
     if (!open) return
-    const prevOverflow = document.body.style.overflow
-    document.body.style.overflow = 'hidden'
+    document.body.classList.add('modal-open')
     const id = setTimeout(() => textareaRef.current?.focus(), 50)
     const onKey = (e: KeyboardEvent) => { if (e.key === 'Escape') onClose() }
     window.addEventListener('keydown', onKey)
     return () => {
-      document.body.style.overflow = prevOverflow
+      document.body.classList.remove('modal-open')
       window.removeEventListener('keydown', onKey)
       clearTimeout(id)
     }
@@ -157,7 +156,7 @@ export default function FeedbackModal({ open, onClose }: FeedbackModalProps) {
               autoComplete="off"
               value={honeypot}
               onInput={e => setHoneypot((e.target as HTMLInputElement).value)}
-              style={{ position: 'absolute', left: '-9999px', width: '1px', height: '1px' }}
+              class="visually-hidden"
               aria-hidden="true"
             />
 

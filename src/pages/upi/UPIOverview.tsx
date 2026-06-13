@@ -5,6 +5,7 @@ import Icon from '../../components/Icon'
 import BarChart from '../../components/charts/BarChart'
 import DoughnutChart from '../../components/charts/DoughnutChart'
 import LineChart from '../../components/charts/LineChart'
+import SwatchDot from '../../components/SwatchDot'
 import { useUPIAppData, useUPITimeSeries } from '../../hooks/useUpiData'
 import { APP_COLORS } from '../../data/upiAppData'
 import clsx from 'clsx'
@@ -67,15 +68,16 @@ export default function UPIOverview() {
           </p>
           <div class="flex items-center gap-5">
             <div class="w-10 h-10 rounded-xl flex items-center justify-center shrink-0"
+              /* one-ui-allow: leader badge tint from the app brand color */
               style={{ background: `${leader.color}22`, border: `1px solid ${leader.color}44` }}>
-              <span class="text-lg font-bold" style={{ color: leader.color }}>{leader.app[0]}</span>
+              <span class="text-lg font-bold" /* one-ui-allow: initial colored by app brand */ style={{ color: leader.color }}>{leader.app[0]}</span>
             </div>
             <div class="flex-1 min-w-0">
               <p class="text-ink-gray-9 font-semibold truncate">{leader.app}</p>
               <p class="text-xs text-ink-gray-7 mt-0.5">{fmt(leader.volume, 'vol')} · {fmt(leader.value, 'val')}</p>
             </div>
             <div class="text-right shrink-0">
-              <p class="text-2xl font-bold" style={{ color: leader.color }}>{leader.volShare.toFixed(1)}%</p>
+              <p class="text-2xl font-bold" /* one-ui-allow: share colored by app brand */ style={{ color: leader.color }}>{leader.volShare.toFixed(1)}%</p>
               <p class="text-xs text-ink-gray-6">volume share</p>
             </div>
             <div class="text-right shrink-0">
@@ -128,7 +130,7 @@ export default function UPIOverview() {
             {top10.slice(0, 5).map(r => (
               <div key={r.app} class="flex items-center justify-between text-xs">
                 <span class="flex items-center gap-1.5 text-ink-gray-8">
-                  <span class="w-2 h-2 rounded-sm shrink-0" style={{ background: r.color }} />
+                  <SwatchDot color={r.color} square />
                   {r.app}
                 </span>
                 <span class="text-ink-gray-7 tabular-nums">{r.volShare.toFixed(1)}%</span>

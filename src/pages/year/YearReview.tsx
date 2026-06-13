@@ -3,6 +3,7 @@ import { useMemo, useState } from 'preact/hooks'
 import { useRBIMonthly } from '../../hooks/useRBIData'
 import LineChart from '../../components/charts/LineChart'
 import InfoChip from '../../components/InfoChip'
+import SwatchDot from '../../components/SwatchDot'
 import type { RBIMonthly } from '../../api/rbiDaily'
 
 // ── Formatters ──────────────────────────────────────────────────────────────
@@ -170,7 +171,7 @@ export default function YearReview() {
           ].map(({ rail, sub }) => (
             <div key={rail.id} class="glass-card p-4">
               <div class="flex items-center gap-2 mb-2">
-                <span class="w-2 h-2 rounded-full shrink-0" style={{ background: rail.color }} />
+                <SwatchDot color={rail.color} />
                 <span class="text-2xs font-semibold tracking-wide text-ink-gray-5">{rail.label}</span>
               </div>
               <div class="text-xl font-bold text-ink-gray-9 tracking-tight">{rail.yearTotal > 0 ? fmtCr(rail.yearTotal) : '—'}</div>
@@ -199,7 +200,7 @@ export default function YearReview() {
             <div key={rail.id} class="glass-card p-5">
               <div class="flex items-center justify-between mb-3">
                 <div class="flex items-center gap-2">
-                  <span class="w-2.5 h-2.5 rounded-full shrink-0" style={{ background: rail.color }} />
+                  <SwatchDot color={rail.color} size={10} />
                   <h2 class="text-sm font-medium text-ink-gray-9">{rail.label}</h2>
                 </div>
                 {rail.growth !== null && (
