@@ -12,7 +12,8 @@
    is unaffected — it has its own ink scale. */
 :root {
   /* unified suite tokens */
-  --ds-font-sans: 'Geist Variable', 'Geist', system-ui, sans-serif;
+  --ds-font-sans: 'Geist Variable', 'Geist', 'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --ds-font-mono: 'Geist Mono', ui-monospace, 'SF Mono', Menlo, Consolas, monospace;
   --ds-bg-app: #F8F8F8;
   --ds-bg-card: #FFFFFF;
   --ds-text-strong: #171717;
@@ -25,12 +26,31 @@
   --ds-sidebar-border: #232323;
   --ds-sidebar-text-strong: #F8F8F8;
   --ds-sidebar-text: #999999;
-  --ds-sidebar-text-muted: #9A9A9A;
+  --ds-sidebar-text-muted: #707070;
   --ds-radius-control: 8px;
   --ds-radius-card: 12px;
   --ds-radius-pill: 9999px;
+  --ds-space-1: 4px;
+  --ds-space-2: 8px;
+  --ds-space-3: 12px;
+  --ds-space-4: 16px;
+  --ds-space-5: 20px;
+  --ds-space-6: 24px;
+  --ds-space-8: 32px;
+  --ds-space-10: 40px;
   --ds-accent: #0070CC;
   --ds-accent-soft: #F2F9FF;
+  --ds-status-info: #0070CC;
+  --ds-status-info-soft: #F2F9FF;
+  --ds-status-success: #137949;
+  --ds-status-success-soft: #F2FDF4;
+  --ds-status-warning: #B35309;
+  --ds-status-warning-soft: #FDFAED;
+  --ds-status-danger: #CC2929;
+  --ds-status-danger-soft: #FFF7F7;
+  --ds-focus-ring: 0 0 0 3px var(--ds-accent-soft);
+  --ds-shadow-card: 0 1px 2px rgba(23, 23, 23, 0.05);
+  --ds-shadow-overlay: 0 16px 40px rgba(23, 23, 23, 0.16);
 
   --surface-white: var(--ds-bg-card);
   --surface-cards: var(--ds-bg-card);
@@ -86,7 +106,7 @@
   }
 
   html {
-    font-family: 'Geist Variable', 'Geist', system-ui, sans-serif;
+    font-family: var(--ds-font-sans);
   }
 
   body {
