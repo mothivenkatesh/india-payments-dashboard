@@ -68,7 +68,7 @@ export default function LineChart({ labels, datasets, height = 200, tickFormat, 
           ctx.setLineDash([])
           if (baselineLabel) {
             ctx.fillStyle = 'rgba(100,116,139,0.95)'
-            ctx.font = '10px ui-sans-serif, system-ui, -apple-system, sans-serif'
+            ctx.font = "10px 'Zoho Puvi', sans-serif"
             ctx.textAlign = 'right'
             ctx.textBaseline = 'bottom'
             ctx.fillText(baselineLabel, xScale.right - 4, yPx - 2)
@@ -88,7 +88,7 @@ export default function LineChart({ labels, datasets, height = 200, tickFormat, 
           ctx.stroke()
           ctx.setLineDash([])
           ctx.fillStyle = 'rgba(100,116,139,0.95)'
-          ctx.font = '10px ui-sans-serif, system-ui, -apple-system, sans-serif'
+          ctx.font = "10px 'Zoho Puvi', sans-serif"
           ctx.textAlign = 'left'
           ctx.textBaseline = 'top'
           ctx.fillText(verticalAnnotation.label, xPx + 4, yScale.top + 2)
@@ -97,7 +97,7 @@ export default function LineChart({ labels, datasets, height = 200, tickFormat, 
 
         if (endLabels && endLabels.length) {
           ctx.save()
-          ctx.font = '600 10px ui-sans-serif, system-ui, -apple-system, sans-serif'
+          ctx.font = "600 10px 'Zoho Puvi', sans-serif"
           ctx.textAlign = 'left'
           ctx.textBaseline = 'middle'
           const placed: { x: number; y: number }[] = []

@@ -56,11 +56,11 @@ const lucidePlugin = plugin(({ matchComponents }) => {
   )
 })
 
-// ── Font-family base (project-specific — Geist) ───────────────────────────
+// ── Font-family base (project-specific, One UI Puvi only) ─────────────────
 const fontFamilyPlugin = plugin(({ addBase, theme }) => {
   addBase({
     html: {
-      'font-family': `'Geist Variable', 'Geist', ${theme('fontFamily.sans')}`,
+      'font-family': `'Zoho Puvi', sans-serif`,
     },
     'html, body, button, p, span, div': {
       '-webkit-font-smoothing': 'antialiased',

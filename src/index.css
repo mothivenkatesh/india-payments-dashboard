@@ -1,4 +1,42 @@
-@import '@fontsource-variable/geist';
+@font-face {
+  font-family: 'Zoho Puvi';
+  src: url('./assets/fonts/ZohoPuvi-Regular.otf') format('opentype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Zoho Puvi';
+  src: url('./assets/fonts/ZohoPuvi-RegularItalic.otf') format('opentype');
+  font-weight: 400;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Zoho Puvi';
+  src: url('./assets/fonts/ZohoPuvi-Medium.otf') format('opentype');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Zoho Puvi';
+  src: url('./assets/fonts/ZohoPuvi-Semibold.otf') format('opentype');
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Zoho Puvi';
+  src: url('./assets/fonts/ZohoPuvi-Bold.otf') format('opentype');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
 
 @tailwind base;
 @tailwind components;
@@ -12,8 +50,8 @@
    is unaffected — it has its own ink scale. */
 :root {
   /* unified suite tokens */
-  --ds-font-sans: 'Geist Variable', 'Geist', 'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif;
-  --ds-font-mono: 'Geist Mono', ui-monospace, 'SF Mono', Menlo, Consolas, monospace;
+  --ds-font-sans: 'Zoho Puvi', sans-serif;
+  --ds-font-mono: 'Zoho Puvi', sans-serif;
   --ds-bg-app: #F8F8F8;
   --ds-bg-card: #FFFFFF;
   --ds-text-strong: #171717;

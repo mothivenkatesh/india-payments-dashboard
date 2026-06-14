@@ -10,7 +10,6 @@
     "size": "vite build && du -sh dist/assets/*.js"
   },
   "dependencies": {
-    "@fontsource-variable/geist": "^5.2.9",
     "@tailwindcss/forms": "^0.5.11",
     "chart.js": "^4.4.4",
     "clsx": "^2.1.1",
